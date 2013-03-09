@@ -1,0 +1,28 @@
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	p = push
+	pl = pull
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[color]
+	ui = true
+[user]
+	name = Calvin Cheng
+	email = linchuan.cheng@gmail.com
+[core]
+	excludesfile = /Users/calvin/.gitignore_global
+	autocrlf = input
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[merge]
+	tool = kdiff3
+[push]
+	default = simple
+[diff]
+	tool = kdiff3
