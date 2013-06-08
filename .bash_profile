@@ -1,3 +1,4 @@
+# Works with bash, not with zsh
 function prompt {
 	parse_git_branch() {
 		git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(git::\1)/'
@@ -21,10 +22,9 @@ function prompt {
 
 	export PS1="$BLUEBOLD\$(parse_git_branch)$RED\H \l $YELLOWBOLD\d $CYANBOLD\t $GREEN|\w|$WHITE\n\u\$ ";
 }
+
 prompt
-function deploy_dev {
-	git p --all; git p --tag; fab deploy:dev; fab uwsgi:dev,restart;
-}
+
 export PATH="/opt/local/library/Frameworks/Python.framework/Versions/2.7/bin:$PATH";
 export PATH="/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:$PATH";
 export PATH="/opt/local/lib/mysql51/bin:$PATH";
@@ -43,13 +43,16 @@ export LC_ALL="en_US.UTF-8"
 export EDITOR=vim
 export HDF5_DIR=/opt/local
 export GOPATH=$HOME/gopath
+export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+# Load RVM into a shell session *as a function*
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-# nginx
+# useful aliases
 alias nginx_start='sudo launchctl load -w /Library/LaunchDaemons/org.macports.nginx.plist'
 alias nginx_stop='sudo launchctl unload -w /Library/LaunchDaemons/org.macports.nginx.plist'
 alias nginx_restart='nginx_stop; nginx_start;'
 alias mongod_start='mongod --dbpath /var/lib/mongodb;'
 alias cs='python manage.py collectstatic --noinput'
+alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
