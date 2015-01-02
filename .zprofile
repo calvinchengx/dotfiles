@@ -42,9 +42,9 @@ setopt prompt_subst
 autoload -U colors && colors
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' actionformats \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+	'%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats       \
-    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+	'%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
 zstyle ':vcs_info:*' enable git cvs svn
@@ -53,7 +53,7 @@ zstyle ':vcs_info:*' enable git cvs svn
 vcs_info_wrapper() {
   vcs_info
   if [ -n "$vcs_info_msg_0_" ]; then
-    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}"
+	echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}"
   fi
 }
 
@@ -68,17 +68,7 @@ PROMPT+="
 " # Newline
 PROMPT+="%n %# "  # Username and prompt
 
-function deploy_dev {
-	git p --all; git p --tag; fab deploy:dev; fab uwsgi:dev,restart;
-}
-
-export PATH="/opt/local/library/Frameworks/Python.framework/Versions/2.7/bin:$PATH";
-export PATH="/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:$PATH";
-export PATH="/opt/local/lib/mysql51/bin:$PATH";
-export PATH="/usr/local/go/bin:$PATH";
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/work
-source `which virtualenvwrapper.sh`
+# language
 export LANG="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
@@ -87,13 +77,54 @@ export LC_MONETARY="en_US.UTF-8"
 export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+
+# editor
 export EDITOR=vim
-export HDF5_DIR=/opt/local
-export GOPATH=$HOME/gopath
-export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
+
+# defaults
+export PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:$PATH";
+
+# macports
+export PATH="/opt/local/bin:/opt/local/sbin:/usr/X11/bin:$PATH";
+
+# python
+export PATH="/opt/local/library/Frameworks/Python.framework/Versions/2.7/bin:$PATH";
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/work
+source `which virtualenvwrapper.sh`
+
+# golang
+export PATH="/usr/local/go/bin:$PATH";
+
+# android
+export PATH="/Applications/Android Studio.app/sdk/platform-tools:/Applications/Android Studio.app/sdk/tools:$PATH";
+export ANDROID_HOME="/Applications/Android Studio.app/sdk";
+
+# haskell
+export PATH="$HOME/.cabal/bin:$PATH";
+export PATH="$HOME/Library/Haskell/bin:$PATH"  # using haskell platformm
+
+# ruby
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+jek() {
+    jekyll -w serve & open "http://localhost:4000"
+}
+
+# c
+export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
+
+# javascript
+export PHANTOMJS_BIN="/opt/local/bin/phantomjs"
+
+# docker
+export DOCKER_HOST=tcp://127.0.0.1:4243
+
+# Carlson Minot cross compiler
+export PATH=/usr/local/carlson-minot/crosscompilers/bin:$PATH
+
+# packer
+export PATH=/usr/local/bin/packer:$PATH
 
 # Useful aliases
 alias nginx_start='sudo launchctl load -w /Library/LaunchDaemons/org.macports.nginx.plist'
@@ -103,10 +134,5 @@ alias mongod_start='mongod --dbpath /var/lib/mongodb;'
 alias cs='python manage.py collectstatic --noinput'
 alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias lsd='ls -l | grep "^d"'
-
-# Example of a zsh function
-hello() {
-	echo 'Hello "World"'
-}
 
 # Useful zsh functions
