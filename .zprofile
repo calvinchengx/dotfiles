@@ -103,6 +103,8 @@ export ANDROID_HOME="/Applications/Android Studio.app/sdk";
 # haskell
 export PATH="$HOME/.cabal/bin:$PATH";
 export PATH="$HOME/Library/Haskell/bin:$PATH"  # using haskell platformm
+export HS_PROJ_HOME=$HOME/work
+source `which cabalenv.sh`
 
 # ruby
 
@@ -135,4 +137,5 @@ alias cs='python manage.py collectstatic --noinput'
 alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias lsd='ls -l | grep "^d"'
 
-# Useful zsh functions
+# Experimental
+
