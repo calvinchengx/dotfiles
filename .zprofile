@@ -136,6 +136,7 @@ alias mongod_start='mongod --dbpath /var/lib/mongodb;'
 alias cs='python manage.py collectstatic --noinput'
 alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias lsd='ls -l | grep "^d"'
+alias clearswp='find . -type f -name ".*.swp" -exec rm -f {} \;'
 
 # Experimental
 
