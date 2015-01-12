@@ -128,6 +128,9 @@ export PATH=/usr/local/carlson-minot/crosscompilers/bin:$PATH
 # packer
 export PATH=/usr/local/bin/packer:$PATH
 
+# training 
+export PATH=$HOME/bin:$PATH
+
 # Useful aliases
 alias nginx_start='sudo launchctl load -w /Library/LaunchDaemons/org.macports.nginx.plist'
 alias nginx_stop='sudo launchctl unload -w /Library/LaunchDaemons/org.macports.nginx.plist'
@@ -137,6 +140,7 @@ alias cs='python manage.py collectstatic --noinput'
 alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias lsd='ls -l | grep "^d"'
 alias clearswp='find . -type f -name ".*.swp" -exec rm -f {} \;'
+alias sumdir='du -s ./* | sort -n | cut -f 2- | xargs du -sh'
 
 # Experimental
 
