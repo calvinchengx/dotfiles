@@ -16,6 +16,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'syngan/vim-vimlint'
 Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-surround.git'
 
 " code navigation
 Plugin 'majutsushi/tagbar'
@@ -32,8 +33,15 @@ Plugin 'lukerandall/haskellmode-vim'
 Plugin 'Shougo/vimproc'
 Plugin 'bitc/vim-hdevtools'
 
-" Grab some text in vim and send the tex to a tmux session
+" syntax - Elm-Lang
+Plugin 'lambdatoast/elm.vim'
+
+" vim and tmux integration 
 Plugin 'jpalardy/vim-slime'
+Plugin 'mhinz/vim-tmuxify'
+
+" Just for fun
+Plugin 'vim-scripts/TeTrIs.vim'  " start game with <Leader>te
 
 " Vundle management ends here. Turn our filetype functionality back on
 call vundle#end()
@@ -53,6 +61,29 @@ set softtabstop=4
 set expandtab
 set laststatus=2
 set noerrorbells visualbell t_vb=
+
+" Capitalization shortcuts
+if (&tildeop)
+  nmap gcw guw~l
+  nmap gcW guW~l
+  nmap gciw guiw~l
+  nmap gciW guiW~l
+  nmap gcis guis~l
+  nmap gc$ gu$~l
+  nmap gcgc guu~l
+  nmap gcc guu~l
+  vmap gc gu~l
+else
+  nmap gcw guw~h
+  nmap gcW guW~h
+  nmap gciw guiw~h
+  nmap gciW guiW~h
+  nmap gcis guis~h
+  nmap gc$ gu$~h
+  nmap gcgc guu~h
+  nmap gcc guu~h
+  vmap gc gu~h
+endif
 
 " Plugin scrooloose/nerdtree
 autocmd StdinReadPre * let s:std_in=1
@@ -118,6 +149,14 @@ let g:haddock_browser_callformat="%s -a Firefox %s"
 " Plugin 'jpalardy/vim-slime'
 let g:slime_target="tmux"
 let g:slime_paste_file=tempname()
+
+" Plugin 'mhinz/vim-tmuxify'
+" <leader>m controls most of commands sent to tmux
+let g:tmuxify_run = {
+    \'sh': 'bash %',
+    \'python': 'python %',
+    \'haskell': 'runhaskells %',
+    \}
 
 " Language settings
 augroup HASKELL
