@@ -189,3 +189,9 @@ augroup PYTHON
     autocmd BufNewFile,BufRead *.py setlocal softtabstop=4
     autocmd BufNewFile,BufRead *.py setlocal expandtab
 augroup END
+
+augroup JAVASCRIPT
+    autocmd BufNewFile,BufRead *.js set filetype=javascript
+    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+augroup END
+
