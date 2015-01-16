@@ -1,2 +1,4 @@
 /*global angular, $*/
 /*jshint strict: true, globalstrict: true, devel: true, indent: 2*/
+/*jshint browser: true, laxcomma, true, asi: true */
+/*global deepEqual, equal, notEqual, test, ok, raises */

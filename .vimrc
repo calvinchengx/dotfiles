@@ -36,6 +36,9 @@ Plugin 'bitc/vim-hdevtools'
 " syntax - Elm-Lang
 Plugin 'lambdatoast/elm.vim'
 
+" syntax checking - JavaScript
+Plugin 'wookiehangover/jshint.vim'
+
 " vim and tmux integration 
 Plugin 'jpalardy/vim-slime'
 Plugin 'mhinz/vim-tmuxify'
