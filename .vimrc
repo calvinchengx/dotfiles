@@ -196,5 +196,9 @@ augroup END
 augroup JAVASCRIPT
     autocmd BufNewFile,BufRead *.js set filetype=javascript
     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd BufNewFile,BufRead *.js setlocal shiftwidth=2
+    autocmd BufNewFile,BufRead *.js setlocal tabstop=4
+    autocmd FileType javascript let g:syntastic_javascript_checkers = ['jshint']
+    autocmd FileType javascript let g:syntastic_javascript_jshint_args = '--config ' . $HOME . '/.jshintrc'
 augroup END
 
