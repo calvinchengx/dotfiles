@@ -17,6 +17,7 @@ Plugin 'syngan/vim-vimlint'
 Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround.git'
+Plugin 'Raimondi/delimitMate'
 
 " code navigation
 Plugin 'majutsushi/tagbar'
@@ -38,6 +39,8 @@ Plugin 'lambdatoast/elm.vim'
 
 " syntax checking - JavaScript
 Plugin 'wookiehangover/jshint.vim'
+Plugin 'jelera/vim-javascript-syntax'
+
 
 " vim and tmux integration 
 Plugin 'jpalardy/vim-slime'
