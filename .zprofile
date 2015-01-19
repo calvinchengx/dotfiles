@@ -142,5 +142,8 @@ alias lsd='ls -l | grep "^d"'
 alias clearswp='find . -type f -name ".*.swp" -exec rm -f {} \;'
 alias sumdir='du -s ./* | sort -n | cut -f 2- | xargs du -sh'
 
-# Experimental
+# Permit C-s mapping in vim
+stty start undef
+stty stop undef
 
+# Experimental

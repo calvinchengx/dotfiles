@@ -41,6 +41,11 @@ Plugin 'lambdatoast/elm.vim'
 Plugin 'wookiehangover/jshint.vim'
 Plugin 'jelera/vim-javascript-syntax'
 
+" sytnax checking - JSON
+Plugin 'elzr/vim-json'
+
+" syntax - haml, sass and scss
+Plugin 'tpope/vim-haml'
 
 " vim and tmux integration 
 Plugin 'jpalardy/vim-slime'
@@ -67,6 +72,8 @@ set softtabstop=4
 set expandtab
 set laststatus=2
 set noerrorbells visualbell t_vb=
+map <C-s> :w<CR>
+imap <C-s> <ESC> :w<CR>
 
 " Capitalization shortcuts
 if (&tildeop)
@@ -205,3 +212,7 @@ augroup JAVASCRIPT
     autocmd FileType javascript let g:syntastic_javascript_jshint_args = '--config ' . $HOME . '/.jshintrc'
 augroup END
 
+augroup JSON
+    autocmd BufNewFile,BufRead *.json set filetype=json
+    autocmd FileType json let g:syntastic_json_checkers = ['jsonlint']
+augroup END
