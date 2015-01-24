@@ -38,7 +38,6 @@ Plugin 'bitc/vim-hdevtools'
 Plugin 'lambdatoast/elm.vim'
 
 " syntax checking - JavaScript
-Plugin 'wookiehangover/jshint.vim'
 Plugin 'jelera/vim-javascript-syntax'
 
 " sytnax checking - JSON
@@ -204,15 +203,18 @@ augroup PYTHON
 augroup END
 
 augroup JAVASCRIPT
+    autocmd!
     autocmd BufNewFile,BufRead *.js set filetype=javascript
-    autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd BufNewFile,BufRead *.js setlocal shiftwidth=2
     autocmd BufNewFile,BufRead *.js setlocal tabstop=4
     autocmd FileType javascript let g:syntastic_javascript_checkers = ['jshint']
-    autocmd FileType javascript let g:syntastic_javascript_jshint_args = '--config ' . $HOME . '/.jshintrc'
+    autocmd FileType javascript let g:syntastic_javascript_jshint_args = '--config ' . $HOME . '/.jshintrc ' . '--exclude-path ' . $HOME . '/.jshintignore '
 augroup END
 
 augroup JSON
+    autocmd!
     autocmd BufNewFile,BufRead *.json set filetype=json
+    autocmd FileType json let g:vim_json_syntax_conceal = 0
     autocmd FileType json let g:syntastic_json_checkers = ['jsonlint']
 augroup END
