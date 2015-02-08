@@ -34,6 +34,9 @@ Plugin 'lukerandall/haskellmode-vim'
 Plugin 'Shougo/vimproc'
 Plugin 'bitc/vim-hdevtools'
 
+" syntax - Jinja templates
+Plugin 'lepture/vim-jinja'
+
 " syntax - Elm-Lang
 Plugin 'lambdatoast/elm.vim'
 
@@ -202,6 +205,11 @@ augroup PYTHON
     autocmd BufNewFile,BufRead *.py setlocal expandtab
 augroup END
 
+augroup JINJA
+    autocmd!
+    autocmd BufNewFile,BufRead *.j2 set filetype=jinja
+augroup END
+
 augroup JAVASCRIPT
     autocmd!
     autocmd BufNewFile,BufRead *.js set filetype=javascript
@@ -217,4 +225,15 @@ augroup JSON
     autocmd BufNewFile,BufRead *.json set filetype=json
     autocmd FileType json let g:vim_json_syntax_conceal = 0
     autocmd FileType json let g:syntastic_json_checkers = ['jsonlint']
+augroup END
+
+augroup RUBY
+    autocmd!
+    autocmd BufNewFile,BufRead Gemfile set filetype=ruby
+    autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
+    autocmd BufNewFile,BufRead Berksfile set filetype=ruby
+    autocmd BufNewFile,BufRead *.rb set filetype=ruby
+    autocmd BufNewFile,BufRead *.rb setlocal shiftwidth=2
+    autocmd BufNewFile,BufRead *.rb setlocal tabstop=2
+    autocmd BufNewFile,BufRead *.rb setlocal softtabstop=2
 augroup END
