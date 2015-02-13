@@ -25,6 +25,7 @@ Plugin 'majutsushi/tagbar'
 " syntax checking and autocomplete
 Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
+Plugin 'mxw/vim-jsx'
 
 " syntax checking and autocomplete - Haskell
 Plugin 'Shougo/neocomplete'
@@ -41,7 +42,8 @@ Plugin 'lepture/vim-jinja'
 Plugin 'lambdatoast/elm.vim'
 
 " syntax checking - JavaScript
-Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+"Plugin 'jelera/vim-javascript-syntax'
 
 " sytnax checking - JSON
 Plugin 'elzr/vim-json'
@@ -218,6 +220,16 @@ augroup JAVASCRIPT
     autocmd BufNewFile,BufRead *.js setlocal tabstop=4
     autocmd FileType javascript let g:syntastic_javascript_checkers = ['jshint']
     autocmd FileType javascript let g:syntastic_javascript_jshint_args = '--config ' . $HOME . '/.jshintrc ' . '--exclude-path ' . $HOME . '/.jshintignore '
+augroup END
+
+" sudo npm install syntastic-react react-tools jshint
+augroup JSX
+    autocmd!
+    autocmd BufNewFile,BufRead *.jsx set filetype=javascript
+    autocmd BufNewFile,BufRead *.jsx setlocal shiftwidth=2
+    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=4
+    autocmd FileType jsx let g:syntastic_javascript_checkers = ['jsxhint']
+    autocmd Filetype jsx let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
 augroup END
 
 augroup JSON
