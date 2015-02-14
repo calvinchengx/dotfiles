@@ -142,6 +142,11 @@ alias lsd='ls -l | grep "^d"'
 alias clearswp='find . -type f -name ".*.swp" -exec rm -f {} \;'
 alias sumdir='du -s ./* | sort -n | cut -f 2- | xargs du -sh'
 
+# git crawl aliases
+# https://github.com/magnusstahre/git-stuff
+alias next='git crawl master'
+alias previous='git co HEAD^1'
+
 # Permit C-s mapping in vim
 stty start undef
 stty stop undef
