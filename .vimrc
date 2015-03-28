@@ -51,9 +51,15 @@ Plugin 'elzr/vim-json'
 " syntax - haml, sass and scss
 Plugin 'tpope/vim-haml'
 
+" superiori lisp interaction mode for vim (slime)
+Plugin 'kovisoft/slimv'
+
 " vim and tmux integration 
 Plugin 'jpalardy/vim-slime'
 Plugin 'mhinz/vim-tmuxify'
+
+Plugin 'rafaelfranca/rtf_pygmentize'    " :RTFPygmentize
+Plugin 'zerowidth/vim-copy-as-rtf'      " :CopyRTF
 
 " Just for fun
 Plugin 'vim-scripts/TeTrIs.vim'  " start game with <Leader>te
@@ -249,3 +255,9 @@ augroup RUBY
     autocmd BufNewFile,BufRead *.rb setlocal tabstop=2
     autocmd BufNewFile,BufRead *.rb setlocal softtabstop=2
 augroup END
+
+augroup LISP
+    autocmd!
+    autocmd BufNewFile,BufRead *.jsx set filetype=lisp
+    autocmd FileType let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' 
+augroup EMD
