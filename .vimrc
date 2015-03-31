@@ -23,6 +23,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'majutsushi/tagbar'
 
 " syntax checking and autocomplete
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'mxw/vim-jsx'
@@ -43,6 +44,7 @@ Plugin 'lambdatoast/elm.vim'
 
 " syntax checking - JavaScript
 Plugin 'pangloss/vim-javascript'
+Plugin 'marijnh/tern_for_vim'
 "Plugin 'jelera/vim-javascript-syntax'
 
 " sytnax checking - JSON
@@ -258,6 +260,6 @@ augroup END
 
 augroup LISP
     autocmd!
-    autocmd BufNewFile,BufRead *.jsx set filetype=lisp
+    autocmd BufNewFile,BufRead *.lisp set filetype=lisp
     autocmd FileType let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' 
 augroup EMD

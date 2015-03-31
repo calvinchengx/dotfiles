@@ -106,6 +106,10 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"  # using haskell platformm
 export HS_PROJ_HOME=$HOME/work
 source `which cabalenv.sh`
 
+# nodejs
+export NVM_DIR="/Users/calvin/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # ruby
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
