@@ -162,6 +162,10 @@ let g:tagbar_type_haskell = {
 \ }
 endif
 
+" Plugin 'marijnh/tern_for_vim'
+let g:tern_map_keys=1
+let g:tern_show_argument_hints='on_hold'
+
 " Plugin 'Shougo/neocomplete'
 let g:neocomplete#enable_at_startup=1
 
@@ -224,7 +228,6 @@ augroup END
 augroup JAVASCRIPT
     autocmd!
     autocmd BufNewFile,BufRead *.js set filetype=javascript
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd BufNewFile,BufRead *.js setlocal shiftwidth=2
     autocmd BufNewFile,BufRead *.js setlocal tabstop=4
     autocmd FileType javascript let g:syntastic_javascript_checkers = ['jshint']
