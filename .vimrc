@@ -163,8 +163,6 @@ let g:tagbar_type_haskell = {
 endif
 
 " Plugin 'marijnh/tern_for_vim'
-let g:tern_map_keys=1
-let g:tern_show_argument_hints='on_hold'
 
 " Plugin 'Shougo/neocomplete'
 let g:neocomplete#enable_at_startup=1
@@ -232,6 +230,12 @@ augroup JAVASCRIPT
     autocmd BufNewFile,BufRead *.js setlocal tabstop=4
     autocmd FileType javascript let g:syntastic_javascript_checkers = ['jshint']
     autocmd FileType javascript let g:syntastic_javascript_jshint_args = '--config ' . $HOME . '/.jshintrc ' . '--exclude-path ' . $HOME . '/.jshintignore '
+    autocmd FileType javascript let g:tern_map_keys=1
+    autocmd FileType javascript let g:tern_show_argument_hints='on_hold'
+    autocmd FileType javascript map <leader>td :TernDoc<CR>
+    autocmd FileType javascript map <leader>tt :TernType<CR>
+    autocmd FileType javascript map <leader>td :TernDef<CR>
+    autocmd FileType javascript map <leader>tR :TernRename<CR>
 augroup END
 
 " sudo npm install syntastic-react react-tools jshint
@@ -242,6 +246,8 @@ augroup JSX
     autocmd BufNewFile,BufRead *.jsx setlocal tabstop=4
     autocmd FileType jsx let g:syntastic_javascript_checkers = ['jsxhint']
     autocmd Filetype jsx let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
+    autocmd FileType jsx let g:tern_map_keys=1
+    autocmd FileType jsx let g:tern_show_argument_hints='on_hold'
 augroup END
 
 augroup JSON
@@ -266,4 +272,4 @@ augroup LISP
     autocmd!
     autocmd BufNewFile,BufRead *.lisp set filetype=lisp
     autocmd FileType let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' 
-augroup EMD
+augroup END 
