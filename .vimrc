@@ -19,6 +19,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround.git'
 Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
 
 " code navigation
 Plugin 'majutsushi/tagbar'
@@ -57,7 +58,7 @@ Plugin 'tpope/vim-haml'
 " superiori lisp interaction mode for vim (slime)
 Plugin 'kovisoft/slimv'
 
-" vim and tmux integration 
+" vim and tmux integration
 Plugin 'jpalardy/vim-slime'
 Plugin 'mhinz/vim-tmuxify'
 
@@ -162,8 +163,6 @@ let g:tagbar_type_haskell = {
 \ }
 endif
 
-" Plugin 'marijnh/tern_for_vim'
-
 " Plugin 'Shougo/neocomplete'
 let g:neocomplete#enable_at_startup=1
 
@@ -194,8 +193,8 @@ augroup HASKELL
     autocmd BufNewFile,BufRead *.hs setlocal shiftwidth=4
     autocmd BufNewFile,BufRead *.hs setlocal tabstop=8
     autocmd BufNewFile,BufRead *.hs setlocal softtabstop=4
-    autocmd BufNewFile,BufRead *.hs setlocal expandtab 
-    autocmd FileType hs setlocal omnifunc=necoghc#omnifunc    
+    autocmd BufNewFile,BufRead *.hs setlocal expandtab
+    autocmd FileType hs setlocal omnifunc=necoghc#omnifunc
     " Active keys to control syntastic in haskell filetype
     autocmd FileType haskell map <silent> <Leader>e :Errors<CR>
     autocmd FileType haskell map <Leader>s :SyntasticToggleMode<CR>
@@ -206,7 +205,7 @@ augroup HASKELL
     " Plugin 'lukerandall/haskellmode-vim' and ghc-mod integration
     autocmd FileType haskell map <silent> tu :call GHC_BrowseAll()<CR> " ghc-mod reload
     autocmd FileType haskell map <silent> tw :call GHC_ShowType(1)<CR> " type lookup
-augroup END   
+augroup END
 
 augroup PYTHON
     autocmd!
@@ -271,5 +270,5 @@ augroup END
 augroup LISP
     autocmd!
     autocmd BufNewFile,BufRead *.lisp set filetype=lisp
-    autocmd FileType let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &' 
-augroup END 
+    autocmd FileType let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &'
+augroup END
