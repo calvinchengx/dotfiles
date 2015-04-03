@@ -156,7 +156,7 @@ stty start undef
 stty stop undef
 
 # Experimental
-source antigen.zsh
+source ~/antigen.zsh
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions src
