@@ -18,6 +18,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround.git'
 Plugin 'Raimondi/delimitMate'
+Plugin 'bling/vim-airline'
 
 " code navigation
 Plugin 'majutsushi/tagbar'
