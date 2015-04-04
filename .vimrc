@@ -232,6 +232,7 @@ augroup JAVASCRIPT
     autocmd BufNewFile,BufRead *.js set filetype=javascript
     autocmd BufNewFile,BufRead *.js setlocal shiftwidth=2
     autocmd BufNewFile,BufRead *.js setlocal tabstop=4
+    autocmd FileType javascript setlocal comments-=:// comments+=f://   " disable autocommenting after opening a newline
     autocmd FileType javascript let g:syntastic_javascript_checkers = ['jshint']
     autocmd FileType javascript let g:syntastic_javascript_jshint_args = '--config ' . $HOME . '/.jshintrc ' . '--exclude-path ' . $HOME . '/.jshintignore '
     autocmd FileType javascript let g:tern_map_keys=1
