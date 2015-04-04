@@ -78,6 +78,9 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+# tmux
+export DISABLE_AUTO_TITLE='true';
+
 # editor
 export EDITOR=vim
 
