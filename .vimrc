@@ -47,7 +47,7 @@ Plugin 'lambdatoast/elm.vim'
 " syntax checking - JavaScript
 Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
-"Plugin 'jelera/vim-javascript-syntax'
+Plugin 'moll/vim-node'
 
 " sytnax checking - JSON
 Plugin 'elzr/vim-json'
@@ -88,6 +88,11 @@ set laststatus=2
 set noerrorbells visualbell t_vb=
 map <C-s> :w<CR>
 imap <C-s> <ESC> :w<CR>
+
+" fuzzy search with ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
 
 " Capitalization shortcuts
 if (&tildeop)
