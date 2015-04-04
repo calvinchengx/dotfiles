@@ -55,7 +55,10 @@ Plugin 'elzr/vim-json'
 " syntax - haml, sass and scss
 Plugin 'tpope/vim-haml'
 
-" superiori lisp interaction mode for vim (slime)
+" syntax - rainbow parentheses for lisp-y languages
+Plugin 'luochen1990/rainbow'
+
+" superior lisp interaction mode for vim (slime)
 Plugin 'kovisoft/slimv'
 
 " vim and tmux integration
@@ -276,5 +279,6 @@ augroup END
 augroup LISP
     autocmd!
     autocmd BufNewFile,BufRead *.lisp set filetype=lisp
+    autocmd FileType let g:rainbow_active = 1
     autocmd FileType let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &'
 augroup END
