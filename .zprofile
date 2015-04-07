@@ -154,6 +154,8 @@ alias sumdir='du -s ./* | sort -n | cut -f 2- | xargs du -sh'
 alias next='git crawl master'
 alias previous='git co HEAD^1'
 
+source ~/.autoenv/activate.sh
+
 # Permit C-s mapping in vim
 stty start undef
 stty stop undef

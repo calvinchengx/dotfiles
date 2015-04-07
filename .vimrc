@@ -65,6 +65,15 @@ Plugin 'kovisoft/slimv'
 Plugin 'jpalardy/vim-slime'
 Plugin 'mhinz/vim-tmuxify'
 
+" Running tests in vim
+Plugin 'calvinchengx/vim-test'
+Plugin 'tpope/vim-dispatch'
+
+Plugin 'idbrii/AsyncCommand'
+Plugin 'jimf/vim-red-green'
+Plugin 'jimf/vim-async-make-green'
+
+" Useful utilities
 Plugin 'rafaelfranca/rtf_pygmentize'    " :RTFPygmentize
 Plugin 'zerowidth/vim-copy-as-rtf'      " :CopyRTF
 
@@ -96,6 +105,15 @@ imap <C-s> <ESC> :w<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['buffertag', 'tag', 'line', 'dir']
+
+" Mappings to run tests
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+" make test commands execute using dispatch.vim
+let test#strategy = "dispatch"
 
 " Capitalization shortcuts
 if (&tildeop)
@@ -193,6 +211,9 @@ let g:tmuxify_run = {
     \'haskell': 'runhaskells %',
     \}
 
+" Applies to all filetypes
+autocmd BufWritePre *.* :keepjumps :%s/\s+$//e
+
 " Language settings
 augroup HASKELL
     autocmd!
@@ -232,11 +253,12 @@ augroup END
 
 augroup JAVASCRIPT
     autocmd!
-    autocmd BufNewFile,BufRead *.js set filetype=javascript
-    autocmd BufNewFile,BufRead *.js setlocal shiftwidth=2
-    autocmd BufNewFile,BufRead *.js setlocal tabstop=4
+    autocmd BufNewFile,BufRead *.js,*.jsx set filetype=javascript
+    autocmd BufNewFile,BufRead *.js,*.jsx setlocal shiftwidth=2
+    autocmd BufNewFile,BufRead *.js,*.jsx setlocal tabstop=4
     autocmd FileType javascript setlocal comments-=:// comments+=f://   " disable autocommenting after opening a newline
-    autocmd FileType javascript let g:syntastic_javascript_checkers = ['jshint']
+    " npm install -g eslint babel-eslint eslint-plugin-react
+    autocmd FileType javascript let g:syntastic_javascript_checkers = ['eslint']
     autocmd FileType javascript let g:syntastic_javascript_jshint_args = '--config ' . $HOME . '/.jshintrc ' . '--exclude-path ' . $HOME . '/.jshintignore '
     autocmd FileType javascript let g:tern_map_keys=1
     autocmd FileType javascript let g:tern_show_argument_hints='on_hold'
@@ -244,18 +266,8 @@ augroup JAVASCRIPT
     autocmd FileType javascript map <leader>tt :TernType<CR>
     autocmd FileType javascript map <leader>td :TernDef<CR>
     autocmd FileType javascript map <leader>tR :TernRename<CR>
-augroup END
-
-" sudo npm install syntastic-react react-tools jshint
-augroup JSX
-    autocmd!
-    autocmd BufNewFile,BufRead *.jsx set filetype=javascript
-    autocmd BufNewFile,BufRead *.jsx setlocal shiftwidth=2
-    autocmd BufNewFile,BufRead *.jsx setlocal tabstop=4
-    autocmd FileType jsx let g:syntastic_javascript_checkers = ['jsxhint']
-    autocmd Filetype jsx let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
-    autocmd FileType jsx let g:tern_map_keys=1
-    autocmd FileType jsx let g:tern_show_argument_hints='on_hold'
+    " we run npm test, by default; if no arguments is given to :Dispatch call
+    autocmd FileType javascript let b:dispatch = 'npm test %'
 augroup END
 
 augroup JSON
