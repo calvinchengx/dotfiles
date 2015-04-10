@@ -87,6 +87,9 @@ export EDITOR=vim
 # defaults
 export PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:$PATH";
 
+# xcode
+export DEVROOT="/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer";
+
 # macports
 export PATH="/opt/local/bin:/opt/local/sbin:/usr/X11/bin:$PATH";
 
@@ -135,7 +138,7 @@ export PATH=/usr/local/carlson-minot/crosscompilers/bin:$PATH
 # packer
 export PATH=/usr/local/bin/packer:$PATH
 
-# training 
+# training
 export PATH=$HOME/bin:$PATH
 
 # Useful aliases

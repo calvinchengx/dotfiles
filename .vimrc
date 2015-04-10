@@ -215,6 +215,13 @@ let g:tmuxify_run = {
 autocmd BufWritePre *.* :keepjumps :%s/\s+$//e
 
 " Language settings
+augroup C
+    autocmd!
+    " also handles sub-type doxygen
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+    autocmd FileType c.doxygen let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+augroup END
+
 augroup HASKELL
     autocmd!
     autocmd BufEnter *.hs compiler ghc
@@ -293,4 +300,9 @@ augroup LISP
     autocmd BufNewFile,BufRead *.lisp set filetype=lisp
     autocmd FileType let g:rainbow_active = 1
     autocmd FileType let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &'
+augroup END
+
+augroup MARKDOWN
+    autocmd!
+    autocmd BufNewFile,BufRead *.md set filetype=markdown
 augroup END
