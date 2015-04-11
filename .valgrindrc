@@ -1,0 +1,2 @@
+--leak-check=yes
+--suppressions=objc.supp

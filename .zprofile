@@ -125,6 +125,7 @@ jek() {
 
 # c
 export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
+alias valg='ln -sf ~/objc.supp `pwd`/objc.supp && /usr/local/bin/valgrind'
 
 # javascript
 export PHANTOMJS_BIN="/opt/local/bin/phantomjs"

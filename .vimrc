@@ -27,7 +27,6 @@ Plugin 'majutsushi/tagbar'
 " syntax checking and autocomplete
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
-Plugin 'ervandew/supertab'
 Plugin 'mxw/vim-jsx'
 
 " syntax checking and autocomplete - Haskell
@@ -89,7 +88,8 @@ set background=dark
 colorscheme solarized
 filetype on
 filetype plugin indent on
-set backspace=indent,eol,start " allow backspace in insert mode.
+set completeopt+=preview                " enable function preview with YouCompleteMe
+set backspace=indent,eol,start          " allow backspace in insert mode.
 set number
 let mapleader=","
 set shiftwidth=4
@@ -189,11 +189,23 @@ let g:tagbar_type_haskell = {
 \ }
 endif
 
+" Plugin 'Valloric/YouCompleteMe'
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+
 " Plugin 'Shougo/neocomplete'
 let g:neocomplete#enable_at_startup=1
-
-" Plugin 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType="context"
 
 " Plugin 'bitc/vim-hdevtools'
 let g:haddock_browser="open"
@@ -220,6 +232,9 @@ augroup C
     " also handles sub-type doxygen
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
     autocmd FileType c.doxygen let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+    autocmd FileType c.doxygen setlocal tabstop=4
+    autocmd FileType c.doxygen setlocal softtabstop=4
+
 augroup END
 
 augroup HASKELL
