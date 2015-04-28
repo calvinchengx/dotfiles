@@ -45,7 +45,7 @@ export HDF5_DIR=/opt/local
 export GOPATH=$HOME/gopath
 export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 # Load RVM into a shell session *as a function*
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
@@ -56,3 +56,4 @@ alias nginx_restart='nginx_stop; nginx_start;'
 alias mongod_start='mongod --dbpath /var/lib/mongodb;'
 alias cs='python manage.py collectstatic --noinput'
 alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
+if [ -e /Users/calvin/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/calvin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

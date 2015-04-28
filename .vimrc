@@ -28,6 +28,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
+Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py
 
 " syntax checking and autocomplete - Haskell
 Plugin 'Shougo/neocomplete'
@@ -75,6 +76,9 @@ Plugin 'jimf/vim-async-make-green'
 " Useful utilities
 Plugin 'rafaelfranca/rtf_pygmentize'    " :RTFPygmentize
 Plugin 'zerowidth/vim-copy-as-rtf'      " :CopyRTF
+
+" Documentation
+Plugin 'rizzatti/dash.vim'
 
 " Just for fun
 Plugin 'vim-scripts/TeTrIs.vim'  " start game with <Leader>te
@@ -232,9 +236,11 @@ augroup C
     " also handles sub-type doxygen
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
     autocmd FileType c.doxygen let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+    autocmd FileType c.doxygen let g:ycm_confirm_extra_conf = 0
     autocmd FileType c.doxygen setlocal tabstop=4
     autocmd FileType c.doxygen setlocal softtabstop=4
-
+    autocmd FileType c.doxygen setlocal shiftwidth=4
+    autocmd FileType c.doxygen setlocal expandtab
 augroup END
 
 augroup HASKELL
@@ -320,4 +326,9 @@ augroup END
 augroup MARKDOWN
     autocmd!
     autocmd BufNewFile,BufRead *.md set filetype=markdown
+augroup END
+
+augroup JAVA
+    autocmd!
+    autocmd BufNewFile,BufRead *.java set filetype=java
 augroup END

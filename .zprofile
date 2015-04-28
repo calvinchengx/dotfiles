@@ -124,7 +124,7 @@ jek() {
 }
 
 # c
-export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
+#export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 alias valg='ln -sf ~/objc.supp `pwd`/objc.supp && /usr/local/bin/valgrind'
 
 # javascript
@@ -152,13 +152,18 @@ alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias lsd='ls -l | grep "^d"'
 alias clearswp='find . -type f -name ".*.swp" -exec rm -f {} \;'
 alias sumdir='du -s ./* | sort -n | cut -f 2- | xargs du -sh'
+alias cmaketree="tree -I 'CMakeCache.txt|CMakeFiles|Makefile|cmake_install.cmake|install_manifest.txt'"
 
 # git crawl aliases
 # https://github.com/magnusstahre/git-stuff
 alias next='git crawl master'
 alias previous='git co HEAD^1'
 
+# autoenv
 source ~/.autoenv/activate.sh
+
+# Nix package manager
+if [ -e /Users/calvin/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/calvin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # Permit C-s mapping in vim
 stty start undef

@@ -265,3 +265,17 @@
    fun:printf
    fun:main
 }
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   fun:_platform_memchr$VARIANT$Haswell
+   fun:__sfvwrite
+   fun:__vfprintf
+   fun:__v2printf
+   fun:__xvprintf
+   fun:vfprintf_l
+   fun:printf
+   fun:print_letters
+   fun:print_arguments
+   fun:main
+}
