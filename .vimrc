@@ -20,6 +20,7 @@ Plugin 'tpope/vim-surround.git'
 Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
 
 " code navigation
 Plugin 'majutsushi/tagbar'
