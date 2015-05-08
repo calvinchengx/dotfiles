@@ -50,14 +50,20 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'moll/vim-node'
 
-" sytnax checking - JSON
+" syntax checking - JSON
 Plugin 'elzr/vim-json'
+
+"syntax - golang
+Plugin 'fatih/vim-go'
 
 " syntax - haml, sass and scss
 Plugin 'tpope/vim-haml'
 
 " syntax - rainbow parentheses for lisp-y languages
 Plugin 'luochen1990/rainbow'
+
+" Hex mode editing
+Plugin 'vim-scripts/hexman.vim'
 
 " superior lisp interaction mode for vim (slime)
 Plugin 'kovisoft/slimv'
@@ -235,13 +241,13 @@ autocmd BufWritePre *.* :keepjumps :%s/\s+$//e
 augroup C
     autocmd!
     " also handles sub-type doxygen
-    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
-    autocmd FileType c.doxygen let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-    autocmd FileType c.doxygen let g:ycm_confirm_extra_conf = 0
-    autocmd FileType c.doxygen setlocal tabstop=4
-    autocmd FileType c.doxygen setlocal softtabstop=4
-    autocmd FileType c.doxygen setlocal shiftwidth=4
-    autocmd FileType c.doxygen setlocal expandtab
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+    autocmd FileType c let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+    autocmd FileType c let g:ycm_confirm_extra_conf = 0
+    autocmd FileType c setlocal tabstop=4
+    autocmd FileType c setlocal softtabstop=4
+    autocmd FileType c setlocal shiftwidth=4
+    autocmd FileType c setlocal expandtab
 augroup END
 
 augroup HASKELL
