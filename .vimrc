@@ -38,6 +38,7 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'Shougo/vimproc'
 Plugin 'bitc/vim-hdevtools'
+Plugin 'pbrisbin/vim-syntax-shakespeare'
 
 " syntax - Jinja templates
 Plugin 'lepture/vim-jinja'

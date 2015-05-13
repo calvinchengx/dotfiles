@@ -13,3 +13,4 @@ compinit
 autoload -U promptinit
 promptinit
 # End of lines added by compinstall
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
