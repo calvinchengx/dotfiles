@@ -20,7 +20,7 @@ Plugin 'tpope/vim-surround.git'
 Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
-Plugin 'rking/ag.vim'
+"Plugin 'rking/ag.vim'
 
 " code navigation
 Plugin 'majutsushi/tagbar'
@@ -237,6 +237,7 @@ let g:tmuxify_run = {
 
 " Applies to all filetypes
 autocmd BufWritePre *.* :keepjumps :%s/\s+$//e
+autocmd QuickFixCmdPost *grep* cwindow
 
 " Language settings
 augroup C
@@ -340,3 +341,18 @@ augroup JAVA
     autocmd!
     autocmd BufNewFile,BufRead *.java set filetype=java
 augroup END
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+"command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+"nnoremap \ :Ag<SPACE>

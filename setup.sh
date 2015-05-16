@@ -1,4 +1,6 @@
 sudo port install vim +huge +python27 +gtk2 +lua
+ln -s `pwd`/.vimrc $HOME/.vimrc
+ln -s `pwd`/.vimrc_basic $HOME/.vimrc_basic
 ln -s `pwd`/.bash_profile $HOME/.bash_profile
 ln -s `pwd`/.zprofile $HOME/.zprofile
 ln -s `pwd`/.gitconfig $HOME/.gitconfig
