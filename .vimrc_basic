@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'rking/ag.vim'
 
 " Vundle management ends here. Turn our filetype functionality back on
 call vundle#end()
