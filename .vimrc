@@ -35,7 +35,8 @@ Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py
 Plugin 'Shougo/neocomplete'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
-Plugin 'lukerandall/haskellmode-vim'
+" Disabled haskellmode-vim at the moment because it screws up our search
+" Plugin 'lukerandall/haskellmode-vim'
 Plugin 'Shougo/vimproc'
 Plugin 'bitc/vim-hdevtools'
 Plugin 'pbrisbin/vim-syntax-shakespeare'
@@ -237,7 +238,6 @@ let g:tmuxify_run = {
 
 " Applies to all filetypes
 autocmd BufWritePre *.* :keepjumps :%s/\s+$//e
-autocmd QuickFixCmdPost *grep* cwindow
 
 " Language settings
 augroup C
@@ -254,13 +254,14 @@ augroup END
 
 augroup HASKELL
     autocmd!
-    autocmd BufEnter *.hs compiler ghc
     autocmd BufNewFile,BufRead *.hs set filetype=haskell
     autocmd BufNewFile,BufRead *.hs setlocal shiftwidth=4
     autocmd BufNewFile,BufRead *.hs setlocal tabstop=8
     autocmd BufNewFile,BufRead *.hs setlocal softtabstop=4
     autocmd BufNewFile,BufRead *.hs setlocal expandtab
     autocmd FileType hs setlocal omnifunc=necoghc#omnifunc
+    " Set compiler (haskellmode-vim)
+    "autocmd BufEnter *.hs compiler ghc " <-- This line screws up :grep and :Ag
     " Active keys to control syntastic in haskell filetype
     autocmd FileType haskell map <silent> <Leader>e :Errors<CR>
     autocmd FileType haskell map <Leader>s :SyntasticToggleMode<CR>
@@ -269,8 +270,8 @@ augroup HASKELL
     autocmd FileType haskell nnoremap <buffer> <silent> <C-j> :HdevtoolsClear<CR>
     autocmd FileType haskell nnoremap <buffer> <silent> <C-k> :HdevtoolsInfo<CR>
     " Plugin 'lukerandall/haskellmode-vim' and ghc-mod integration
-    autocmd FileType haskell map <silent> tu :call GHC_BrowseAll()<CR> " ghc-mod reload
-    autocmd FileType haskell map <silent> tw :call GHC_ShowType(1)<CR> " type lookup
+    "autocmd FileType haskell map <silent> tu :call GHC_BrowseAll()<CR> " ghc-mod reload
+    "autocmd FileType haskell map <silent> tw :call GHC_ShowType(1)<CR> " type lookup
 augroup END
 
 augroup PYTHON
