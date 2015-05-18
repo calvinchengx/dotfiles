@@ -41,6 +41,7 @@ Plugin 'Shougo/vimproc'
 Plugin 'bitc/vim-hdevtools'
 Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'Twinside/vim-hoogle'
+Plugin 'calvinchengx/lpaste'
 
 " syntax - Jinja templates
 Plugin 'lepture/vim-jinja'
@@ -232,6 +233,8 @@ let g:neocomplete#enable_at_startup=1
 " Plugin 'bitc/vim-hdevtools'
 let g:haddock_browser="open"
 let g:haddock_browser_callformat="%s -a Firefox %s"
+
+let g:hpaste_author="calvinx"
 
 " Plugin 'jpalardy/vim-slime'
 let g:slime_target="tmux"
