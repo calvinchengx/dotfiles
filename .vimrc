@@ -40,6 +40,7 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'Shougo/vimproc'
 Plugin 'bitc/vim-hdevtools'
 Plugin 'pbrisbin/vim-syntax-shakespeare'
+Plugin 'Twinside/vim-hoogle'
 
 " syntax - Jinja templates
 Plugin 'lepture/vim-jinja'
@@ -104,6 +105,8 @@ filetype plugin indent on
 set completeopt+=preview                " enable function preview with YouCompleteMe
 set backspace=indent,eol,start          " allow backspace in insert mode.
 set number
+set incsearch
+set hlsearch
 let mapleader=","
 set shiftwidth=4
 set tabstop=4
@@ -111,8 +114,14 @@ set softtabstop=4
 set expandtab
 set laststatus=2
 set noerrorbells visualbell t_vb=
+set clipboard=unnamed
+set wildmode=list:longest
 map <C-s> :w<CR>
 imap <C-s> <ESC> :w<CR>
+nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+imap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+nmap <F2> :.w !pbcopy<CR><CR>
+vmap <F2> :w !pbcopy<CR><CR>
 
 " fuzzy search with ctrlp
 let g:ctrlp_map = '<c-p>'
@@ -259,7 +268,8 @@ augroup HASKELL
     autocmd BufNewFile,BufRead *.hs setlocal tabstop=8
     autocmd BufNewFile,BufRead *.hs setlocal softtabstop=4
     autocmd BufNewFile,BufRead *.hs setlocal expandtab
-    autocmd FileType hs setlocal omnifunc=necoghc#omnifunc
+    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+    autocmd FileType haskell let g:necoghc_enable_detailed_browse=1
     " Set compiler (haskellmode-vim)
     "autocmd BufEnter *.hs compiler ghc " <-- This line screws up :grep and :Ag
     " Active keys to control syntastic in haskell filetype
