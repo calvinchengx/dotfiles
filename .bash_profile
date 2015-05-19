@@ -31,7 +31,9 @@ export PATH="/opt/local/lib/mysql51/bin:$PATH";
 export PATH="/usr/local/go/bin:$PATH";
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/work
-source `which virtualenvwrapper.sh`
+if [[ ! -z "`which virtualenvwrapper.sh`" ]]; then
+    source `which virtualenvwrapper.sh`
+fi
 export LANG="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
@@ -57,3 +59,6 @@ alias mongod_start='mongod --dbpath /var/lib/mongodb;'
 alias cs='python manage.py collectstatic --noinput'
 alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
 if [ -e /Users/calvin/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/calvin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+export NVM_DIR="/root/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
