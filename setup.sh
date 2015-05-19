@@ -7,9 +7,10 @@ ln -s `pwd`/.gitconfig $HOME/.gitconfig
 ln -s `pwd`/.gitignore_global $HOME/.gitignore_global
 ln -s `pwd`/.jshintrc $HOME/.jshintrc
 ln -s `pwd`/.eslintrc $HOME/.eslintrc
+ln -s `pwd`/.nixpkgs $HOME/.nixpkgs
+git clone git://github.com/kennethreitz/autoenv.git $HOME/.autoenv
 curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
 npm install -g eslint babel-eslint eslint-plugin-react
-git clone git://github.com/kennethreitz/autoenv.git $HOME/.autoenv
 
 # YouCompleteMe
 ./$HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
