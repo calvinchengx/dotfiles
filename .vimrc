@@ -80,6 +80,10 @@ Plugin 'vim-scripts/hexman.vim'
 " superior lisp interaction mode for vim (slime)
 Plugin 'kovisoft/slimv'
 
+" Nix
+Plugin 'MarcWeber/vim-addon-nix'
+Plugin 'MarcWeber/vim-addon-manager'
+
 " vim and tmux integration
 Plugin 'jpalardy/vim-slime'
 Plugin 'mhinz/vim-tmuxify'
@@ -365,3 +369,9 @@ augroup JAVA
     autocmd!
     autocmd BufNewFile,BufRead *.java set filetype=java
 augroup END
+
+" Using Marc Weber's VAM, in order to load his nix addon.
+set nocompatible | filetype indent plugin on | syn on
+set runtimepath+=~/.vim/bundle/vim-addon-manager
+call vam#ActivateAddons([])
+VAMActivate vim-addon-nix
