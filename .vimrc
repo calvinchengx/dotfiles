@@ -1,3 +1,11 @@
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    " Do Mac stuff here
+    ":echo s:uname
+  endif
+endif
+
 set nocompatible
 filetype off " Disable filetype functionality to use vundle
 set rtp+=~/.vim/bundle/vundle/
@@ -86,7 +94,9 @@ Plugin 'jimf/vim-async-make-green'
 
 " Useful utilities
 Plugin 'rafaelfranca/rtf_pygmentize'    " :RTFPygmentize
+if s:uname == "Darwin\n"
 Plugin 'zerowidth/vim-copy-as-rtf'      " :CopyRTF
+endif
 
 " Documentation
 Plugin 'rizzatti/dash.vim'
