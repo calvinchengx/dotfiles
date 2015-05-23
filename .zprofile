@@ -213,22 +213,6 @@ export PATH=/usr/local/bin/packer:$PATH
 # training
 export PATH=$HOME/bin:$PATH
 
-# Useful aliases
-alias nginx_start='sudo launchctl load -w /Library/LaunchDaemons/org.macports.nginx.plist'
-alias nginx_stop='sudo launchctl unload -w /Library/LaunchDaemons/org.macports.nginx.plist'
-alias nginx_restart='nginx_stop; nginx_start;'
-alias mongod_start='mongod --dbpath /var/lib/mongodb;'
-alias cs='python manage.py collectstatic --noinput'
-alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
-alias lsd='ls -l | grep "^d"'
-alias clearswp='find . -type f -name ".*.swp" -exec rm -f {} \;'
-alias sumdir='du -s ./* | sort -n | cut -f 2- | xargs du -sh'
-alias cmaketree="tree -I 'CMakeCache.txt|CMakeFiles|Makefile|cmake_install.cmake|install_manifest.txt'"
-
-# git crawl aliases
-# https://github.com/magnusstahre/git-stuff
-alias next='git crawl master'
-alias previous='git co HEAD^1'
 
 # autoenv
 source ~/.autoenv/activate.sh
