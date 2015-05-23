@@ -1,10 +1,17 @@
 # Common configuration whether I am using bash or zsh
 
+myDir=$(dirname "$0")
+source $myDir/distro.sh
+DISTRO=$(getDistro)
+
 # Convenient aliases
-alias nginx_start='sudo launchctl load -w /Library/LaunchDaemons/org.macports.nginx.plist'
-alias nginx_stop='sudo launchctl unload -w /Library/LaunchDaemons/org.macports.nginx.plist'
-alias nginx_restart='nginx_stop; nginx_start;'
-alias mongod_start='mongod --dbpath /var/lib/mongodb;'
+if [[ $DISTRO == "Darwin" ]]; then
+    alias nginx_start='sudo launchctl load -w /Library/LaunchDaemons/org.macports.nginx.plist'
+    alias nginx_stop='sudo launchctl unload -w /Library/LaunchDaemons/org.macports.nginx.plist'
+    alias nginx_restart='nginx_stop; nginx_start;'
+    alias mongod_start='mongod --dbpath /var/lib/mongodb;'
+fi
+
 alias cs='python manage.py collectstatic --noinput'
 alias pyc='find . -name "*.pyc" -exec rm -rf {} \;'
 alias lsd='ls -l | grep "^d"'
@@ -35,6 +42,7 @@ symlink() {
     fi
 }
 
+# Returns "function" if arg is an available function
 isFunction() {
     if [[ -z $1 ]]; then
         echo "isFunction requires one argument"
@@ -43,4 +51,9 @@ isFunction() {
 
     local RESULT=$(type -t $1)
     echo $RESULT
+}
+
+# Use gitignore.io API to generate .gitignore files
+gi() {
+    curl -L -s https://www.gitignore.io/api/$@;
 }
