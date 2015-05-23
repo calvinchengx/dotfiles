@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 
+# Link
+link() {
+    if [[ -z $1 ]]; then
+        echo "link function requires one argument."
+        return 1
+    fi
+    TARGET=$HOME/$1
+    SOURCE=`pwd`/$1
+    if [[ ! -e $TARGET ]]; then
+        ln -s $SOURCE $TARGET
+        echo "linked $SOURCE to $TARGET."
+    else
+        echo "$TARGET already exists."
+    fi
+}
+
+link
+
 # Determine OS
 if [[ "`uname`" == "Darwin" ]]; then
     DISTRO="Darwin";
@@ -16,41 +34,48 @@ fi
 if [[ $DISTRO == "Darwin" ]]; then
     sudo port install vim +huge +python27 +gtk2 +lua
 fi
-ln -s `pwd`/.vimrc $HOME/.vimrc
-ln -s `pwd`/.vimrc_basic $HOME/.vimrc_basic
-vim -c VundleUpdate -c quitall
+
+link ".vimrc"
+link ".vimrc_basic"
+#vim -c VundleUpdate -c quitall
 
 # tmux
-ln -s `pwd`/.tmux.conf $HOME/.tmux.conf
+link ".tmux.conf"
+mkdir -p $HOME/.tmux/plugins
+if [[ ! -d "$HOME/.tmux/plugins/tmux" ]]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
 # .bash_profile
-ln -s `pwd`/.bash_profile $HOME/.bash_profile
+link ".bash_profile"
 
 # .zprofile
-ln -s `pwd`/.zprofile $HOME/.zprofile
+link ".zprofile"
 
 # git
-ln -s `pwd`/.gitconfig $HOME/.gitconfig
-ln -s `pwd`/.gitignore_global $HOME/.gitignore_global
+link ".gitconfig"
+link ".gitignore_global"
 
 # nvm
 curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
 npm install -g eslint babel-eslint eslint-plugin-react
 
 # javascript
-ln -s `pwd`/.jshintrc $HOME/.jshintrc
-ln -s `pwd`/.eslintrc $HOME/.eslintrc
+link ".jshintrc"
+link ".eslintrc"
 
 # nix
-ln -s `pwd`/.nixpkgs $HOME/.nixpkgs
+link ".nixpkgs"
 
 # autoenv
-git clone git://github.com/kennethreitz/autoenv.git $HOME/.autoenv
+if [[ ! -e "$HOME/.autoenv" ]]; then
+    git clone git://github.com/kennethreitz/autoenv.git $HOME/.autoenv
+fi
 
 # YouCompleteMe
 .$HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
-ln -s `pwd`/.ycm_extra_conf.py $HOME/.vim/.ycm_extra_conf.py
+link ".ycm_extra_conf.py"
 
 # Valgrind
-ln -s `pwd`/dotfiles/.valgrindrc $HOME/.valgrindrc
-ln -s `pwd`/dotfiles/objc.supp $HOME/objc.supp
+link ".valgrindrc"
+link ".objc.supp"

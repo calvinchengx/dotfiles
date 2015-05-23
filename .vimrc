@@ -40,7 +40,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py
 
 " syntax checking and autocomplete - Haskell
-Plugin 'Shougo/neocomplete'
+"Plugin 'Shougo/neocomplete'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
 " Disabled haskellmode-vim at the moment because it screws up our search
@@ -88,7 +88,7 @@ Plugin 'mhinz/vim-tmuxify'
 Plugin 'calvinchengx/vim-test'
 Plugin 'tpope/vim-dispatch'
 
-Plugin 'idbrii/AsyncCommand'
+"Plugin 'idbrii/AsyncCommand'
 Plugin 'jimf/vim-red-green'
 Plugin 'jimf/vim-async-make-green'
 
