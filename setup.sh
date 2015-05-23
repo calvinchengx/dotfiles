@@ -63,4 +63,4 @@ fi
 
 # Valgrind
 symlink ".valgrindrc"
-symlink ".objc.supp"
+symlink "objc.supp"
