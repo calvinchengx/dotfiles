@@ -17,6 +17,8 @@ alias cmaketree="tree -I 'CMakeCache.txt|CMakeFiles|Makefile|cmake_install.cmake
 alias next='git crawl master'
 alias previous='git co HEAD^1'
 
+myDir=$(dirname "$0")
+
 # A symlink function that does exception handling with friendly messages
 symlink() {
     if [[ -z $1 ]]; then
@@ -31,4 +33,14 @@ symlink() {
     else
         echo "$TARGET already exists."
     fi
+}
+
+isFunction() {
+    if [[ -z $1 ]]; then
+        echo "isFunction requires one argument"
+        return 1
+    fi
+
+    local RESULT=$(type -t $1)
+    echo $RESULT
 }

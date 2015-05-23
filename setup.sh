@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
-source ./distro.sh
+myDir=$(dirname "$0")
+source $myDir/distro.sh
 DISTRO=$(getDistro)
-
 source ./common.sh
 
 # vim
-if [[ $DISTRO == "Darwin" ]]; then
+# Are we on Darwin and is vim not already installed?
+if [[ $DISTRO == "Darwin" ]] && [[ -z "`which vim`" ]]; then
+    echo "Installing vim"
     sudo port install vim +huge +python27 +gtk2 +lua
 fi
 
@@ -17,7 +19,7 @@ symlink ".vimrc_basic"
 # tmux
 symlink ".tmux.conf"
 mkdir -p $HOME/.tmux/plugins
-if [[ ! -d "$HOME/.tmux/plugins/tmux" ]]; then
+if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
@@ -32,15 +34,20 @@ symlink ".gitconfig"
 symlink ".gitignore_global"
 
 # nvm
-curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
-npm install -g eslint babel-eslint eslint-plugin-react
+if [[ $(isFunction "nvm") -ne "function" ]]; then
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
+    npm install -g eslint babel-eslint eslint-plugin-react
+else
+    echo "nvm already installed"
+fi
 
 # javascript
 symlink ".jshintrc"
 symlink ".eslintrc"
 
 # nix
-symlink ".nixpkgs"
+[[ ! -d $HOME/.nixpkgs ]] && mkdir -p $HOME/.nixpkgs
+symlink ".nixpkgs/config.nix"
 
 # autoenv
 if [[ ! -e "$HOME/.autoenv" ]]; then
@@ -48,8 +55,11 @@ if [[ ! -e "$HOME/.autoenv" ]]; then
 fi
 
 # YouCompleteMe
-.$HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
-symlink ".ycm_extra_conf.py"
+YCM_COMPILED=$(find $HOME/.vim/bundle/YouCompleteMe/ -name "ycm_client_support.*" | grep -o "ycm_client_support")
+if [[ -z $YCM_COMPILED ]]; then
+    bash $HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
+    symlink ".ycm_extra_conf.py"
+fi
 
 # Valgrind
 symlink ".valgrindrc"
