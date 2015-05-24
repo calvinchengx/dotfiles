@@ -3,7 +3,10 @@
 myDir=$(dirname "$0")
 source $myDir/distro.sh
 DISTRO=$(getDistro)
-source ./common.sh
+source $myDir/common.sh
+
+symlink "common.sh"
+symlink "distro.sh"
 
 # vim
 # Are we on Darwin and is vim not already installed?
