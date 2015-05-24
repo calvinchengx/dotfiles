@@ -1,6 +1,21 @@
-#!/usr/bin/env bash
-
 # Common configuration whether I am using bash or zsh
+
+myDir=$(dirname "$0")
+source $myDir/distro.sh
+DISTRO=$(getDistro)
+
+# Checks if type is present and if so return its value
+typeCheck() {
+    if [[ $DISTRO == "Darwin" ]]; then
+        local TYPE_CHECK=$(type -w $1 | cut -d " " -f2)
+    else
+        local TYPE_CHECK=$(type -w )
+    fi
+
+    if [[ ! $TYPE_CHECK == "none" ]] || [[ ! -z $TYPE_CHECK ]]; then
+        echo $TYPE_CHECK
+    fi
+}
 
 # Language settings
 export LANG="en_US.UTF-8"
@@ -18,7 +33,7 @@ export EDITOR=vim
 # python virtualenv and virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/work
-if [[ "`type -t virtualenvwrapper.sh`" == "command" ]]; then
+if [[  $(typeCheck "virtualenvwrapper.sh") == "command" ]]; then
     source `type -p virtualenvwrapper.sh`
 fi
 
@@ -35,9 +50,6 @@ source $HOME/.autoenv/activate.sh
 # nix
 [[ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
-myDir=$(dirname "$0")
-source $myDir/distro.sh
-DISTRO=$(getDistro)
 
 # Convenient aliases
 if [[ $DISTRO == "Darwin" ]]; then
@@ -95,7 +107,7 @@ gi() {
 }
 
 # haskell
-if [[ "`type -t cabalenv.sh`" == "command" ]]; then
+if [[ "`typeCheck cabalenv.sh`" == "command" ]]; then
     source `type -p cabalenv.sh`
 fi
 use_haskell() {
