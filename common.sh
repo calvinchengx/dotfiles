@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Common configuration whether I am using bash or zsh
 
 # Language settings
@@ -16,8 +18,8 @@ export EDITOR=vim
 # python virtualenv and virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/work
-if [[ ! -z "`which virtualenvwrapper.sh`" ]]; then
-    source `which virtualenvwrapper.sh`
+if [[ "`type -t virtualenvwrapper.sh`" == "command" ]]; then
+    source `type -p virtualenvwrapper.sh`
 fi
 
 # ruby rvm
@@ -68,7 +70,7 @@ symlink() {
     fi
     TARGET=$HOME/$1
     SOURCE=`pwd`/$1
-    if [[ ! -e $TARGET ]]; then
+    if [[ ! -L $TARGET ]]; then
         ln -s $SOURCE $TARGET
         echo "linked $SOURCE to $TARGET."
     else
@@ -93,7 +95,9 @@ gi() {
 }
 
 # haskell
-source `which cabalenv.sh`
+if [[ "`type -t cabalenv.sh`" == "command" ]]; then
+    source `type -p cabalenv.sh`
+fi
 use_haskell() {
     unset HS_BIN;
     unset CABAL_BIN;

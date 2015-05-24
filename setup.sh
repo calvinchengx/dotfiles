@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ $1 == "--full" ]]; then
+    local INSTALL_TYPE="full"
+fi
+
 myDir=$(dirname "$0")
 source $myDir/distro.sh
 DISTRO=$(getDistro)
@@ -17,7 +21,7 @@ fi
 
 symlink ".vimrc"
 symlink ".vimrc_basic"
-#vim -c VundleUpdate -c quitall
+[[ $INSTALL_TYPE == "full" ]] && vim -c VundleUpdate -c quitall
 
 # tmux
 symlink ".tmux.conf"
@@ -57,13 +61,13 @@ if [[ ! -e "$HOME/.autoenv" ]]; then
     git clone git://github.com/kennethreitz/autoenv.git $HOME/.autoenv
 fi
 
+# Valgrind
+symlink ".valgrindrc"
+symlink "objc.supp"
+
 # YouCompleteMe
 YCM_COMPILED=$(find $HOME/.vim/bundle/YouCompleteMe/ -name "ycm_client_support.*" | grep -o "ycm_client_support")
 if [[ -z $YCM_COMPILED ]]; then
     bash $HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
     symlink ".ycm_extra_conf.py"
 fi
-
-# Valgrind
-symlink ".valgrindrc"
-symlink "objc.supp"

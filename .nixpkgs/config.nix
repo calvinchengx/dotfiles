@@ -1,2 +1,1 @@
-{
-}
+/root/dotfiles/.nixpkgs/config.nix

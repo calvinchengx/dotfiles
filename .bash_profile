@@ -26,7 +26,6 @@ function prompt {
 prompt
 
 export PATH="/opt/local/library/Frameworks/Python.framework/Versions/2.7/bin:$PATH";
-export PATH="/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:$PATH";
 export PATH="/opt/local/lib/mysql51/bin:$PATH";
 export PATH="/usr/local/go/bin:$PATH";
 export HDF5_DIR=/opt/local
@@ -34,5 +33,10 @@ export GOPATH=$HOME/gopath
 #export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 
 # Load common functions and aliases
-myDir=$(pwd -P)
+myDir=$(dirname "$0")
 source $myDir/common.sh
+source $myDir/distro.sh
+DISTRO=$(getDir)
+if [[ $DISTRO == "Darwin" ]]; then
+    export PATH="/opt/local/bin:/opt/local/sbin:$PATH";
+fi
