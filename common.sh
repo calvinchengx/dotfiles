@@ -9,7 +9,7 @@ typeCheck() {
     if [[ $DISTRO == "Darwin" ]]; then
         local TYPE_CHECK=$(type -w $1 | cut -d " " -f2)
     else
-        local TYPE_CHECK=$(type -w )
+        local TYPE_CHECK=$(type -t )
     fi
 
     if [[ ! $TYPE_CHECK == "none" ]] || [[ ! -z $TYPE_CHECK ]]; then
