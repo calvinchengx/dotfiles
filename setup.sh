@@ -67,6 +67,10 @@ fi
 symlink ".valgrindrc"
 symlink "objc.supp"
 
+# htop and other programs that use .config directory
+mkdir -p $HOME/.config/htop
+symlink ".config/htop/htoprc"
+
 # YouCompleteMe
 YCM_COMPILED=$(find $HOME/.vim/bundle/YouCompleteMe/ -name "ycm_client_support.*" | grep -o "ycm_client_support")
 if [[ -z $YCM_COMPILED ]]; then
