@@ -33,7 +33,7 @@ export GOPATH=$HOME/gopath
 #export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 
 # Load common functions and aliases
-myDir=$(dirname "$0")
+myDir=$(pwd -P)
 source $myDir/common.sh
 source $myDir/distro.sh
 DISTRO=$(getDistro)
