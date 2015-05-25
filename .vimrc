@@ -1,5 +1,11 @@
 if has("unix")
   let s:uname = system("uname")
+  if s:uname == "Linux\n"
+    let g:nixos = system('[[ "`cat /proc/version`" == *"NixOS"* ]] && echo NixOS')
+    if g:nixos =~ "NixOS"
+        let g:distro = "NixOS"
+    endif
+  endif
   if s:uname == "Darwin\n"
     " Do Mac stuff here
     ":echo s:uname
@@ -34,7 +40,10 @@ Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 
 " syntax checking and autocomplete
-Plugin 'Valloric/YouCompleteMe'
+" not loading YouCompleteMe from here if we are using NixOS
+if g:distro !~ "NixOS"
+    Plugin 'Valloric/YouCompleteMe'
+endif
 Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py

@@ -1,2 +1,5 @@
-{
+pkgs: {
+    vim = {
+        lua = true;
+    };
 }
