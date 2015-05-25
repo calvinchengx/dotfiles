@@ -56,7 +56,7 @@ symlink ".eslintrc"
 
 # nix
 [[ ! -d $HOME/.nixpkgs ]] && mkdir -p $HOME/.nixpkgs
-symlink ".nixpkgs/config.nix"
+[[ ! -L $HOME/.nixpkgs/config.nix ]] && ln -s "`pwd`/.nixpkgs/config.nix" $HOME/.nixpkgs/config.nix
 
 # autoenv
 if [[ ! -e "$HOME/.autoenv" ]]; then
