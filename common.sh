@@ -1,6 +1,6 @@
 # Common configuration whether I am using bash or zsh
 
-myDir=$(dirname "$0")
+myDir=$(pwd -P)
 source $myDir/distro.sh
 DISTRO=$(getDistro)
 
@@ -71,8 +71,6 @@ alias valg='ln -sf $HOME/objc.supp `pwd`/objc.supp && /usr/local/bin/valgrind'
 # https://github.com/magnusstahre/git-stuff
 alias next='git crawl master'
 alias previous='git co HEAD^1'
-
-myDir=$(dirname "$0")
 
 # A symlink function that does exception handling with friendly messages
 symlink() {

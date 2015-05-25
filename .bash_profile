@@ -36,7 +36,7 @@ export GOPATH=$HOME/gopath
 myDir=$(dirname "$0")
 source $myDir/common.sh
 source $myDir/distro.sh
-DISTRO=$(getDir)
+DISTRO=$(getDistro)
 if [[ $DISTRO == "Darwin" ]]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH";
 fi
