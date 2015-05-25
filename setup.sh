@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ $1 == "--full" ]]; then
-    local INSTALL_TYPE="full"
+    INSTALL_TYPE="full"
 fi
 
 myDir=$(dirname "$0")
@@ -21,6 +21,8 @@ fi
 
 symlink ".vimrc"
 symlink ".vimrc_basic"
+mkdir -p $HOME/.vim/bundle
+[[ ! -d "$HOME/.vim/bundle/vundle" ]] && git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/vundle
 [[ $INSTALL_TYPE == "full" ]] && vim -c VundleUpdate -c quitall
 
 # tmux
