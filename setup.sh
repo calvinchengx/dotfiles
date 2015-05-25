@@ -72,8 +72,10 @@ mkdir -p $HOME/.config/htop
 symlink ".config/htop/htoprc"
 
 # YouCompleteMe
-YCM_COMPILED=$(find $HOME/.vim/bundle/YouCompleteMe/ -name "ycm_client_support.*" | grep -o "ycm_client_support")
-if [[ -z $YCM_COMPILED ]]; then
-    bash $HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
-    symlink ".ycm_extra_conf.py"
+if [[ $DISTRO -ne "NixOS" ]]; then 
+    YCM_COMPILED=$(find $HOME/.vim/bundle/YouCompleteMe/ -name "ycm_client_support.*" | grep -o "ycm_client_support")
+    if [[ -z $YCM_COMPILED ]]; then
+        bash $HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
+        symlink ".ycm_extra_conf.py"
+    fi
 fi
