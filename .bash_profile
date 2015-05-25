@@ -40,3 +40,5 @@ DISTRO=$(getDistro)
 if [[ $DISTRO == "Darwin" ]]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH";
 fi
+
+source $HOME/.autoenv/activate.sh
