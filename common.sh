@@ -1,7 +1,6 @@
 # Common configuration whether I am using bash or zsh
 
-myDir=$(pwd -P)
-source $myDir/distro.sh
+source $HOME/distro.sh
 DISTRO=$(getDistro)
 
 # Checks if type is present and if so return its value

@@ -33,9 +33,8 @@ export GOPATH=$HOME/gopath
 #export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 
 # Load common functions and aliases
-myDir=$(pwd -P)
-source $myDir/common.sh
-source $myDir/distro.sh
+source $HOME/common.sh
+source $HOME/distro.sh
 DISTRO=$(getDistro)
 if [[ $DISTRO == "Darwin" ]]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH";
