@@ -25,12 +25,10 @@ function prompt {
 
 prompt
 
-export PATH="/opt/local/library/Frameworks/Python.framework/Versions/2.7/bin:$PATH";
-export PATH="/opt/local/lib/mysql51/bin:$PATH";
-export PATH="/usr/local/go/bin:$PATH";
-export HDF5_DIR=/opt/local
-export GOPATH=$HOME/gopath
-#export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
+# Make sure tmux works properly
+if [[ $TERM == "screen" ]]; then
+    TERM=screen-256color
+fi
 
 # Load common functions and aliases
 source $HOME/common.sh
@@ -38,6 +36,12 @@ source $HOME/distro.sh
 DISTRO=$(getDistro)
 if [[ $DISTRO == "Darwin" ]]; then
     export PATH="/opt/local/bin:/opt/local/sbin:$PATH";
+    export PATH="/opt/local/library/Frameworks/Python.framework/Versions/2.7/bin:$PATH";
+    export PATH="/opt/local/lib/mysql51/bin:$PATH";
+    export PATH="/usr/local/go/bin:$PATH";
+    export HDF5_DIR=/opt/local
+    export GOPATH=$HOME/gopath
+    #export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 fi
 
 source $HOME/.autoenv/activate.sh
