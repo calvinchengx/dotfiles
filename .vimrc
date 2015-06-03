@@ -51,11 +51,16 @@ Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py
 " syntax checking and autocomplete - Haskell
 "Plugin 'Shougo/neocomplete'
 Plugin 'eagletmt/neco-ghc'
-Plugin 'eagletmt/ghcmod-vim'
 " Disabled haskellmode-vim at the moment because it screws up our search
 " Plugin 'lukerandall/haskellmode-vim'
-Plugin 'Shougo/vimproc'
-Plugin 'bitc/vim-hdevtools'
+if g:distro !~ "NixOS"
+    " On NixOS, I have vimproc, ghcmod-vim and hdevtools installed globally via
+    " /etc/nixos/configuration.nix
+    Plugin 'Shougo/vimproc'
+    Plugin 'eagletmt/ghcmod-vim'
+    Plugin 'bitc/vim-hdevtools'
+endif
+
 Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'Twinside/vim-hoogle'
 Plugin 'calvinchengx/lpaste'
