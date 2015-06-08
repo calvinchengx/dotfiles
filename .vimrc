@@ -1,5 +1,6 @@
 if has("unix")
   let s:uname = system("uname")
+  let g:distro = "Linux\n"
   if s:uname == "Linux\n"
     let g:nixos = system('[[ "`cat /proc/version`" == *"NixOS"* ]] && echo NixOS')
     if g:nixos =~ "NixOS"
