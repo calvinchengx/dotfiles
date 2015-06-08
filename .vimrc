@@ -100,6 +100,7 @@ Plugin 'jimf/vim-async-make-green'
 Plugin 'rafaelfranca/rtf_pygmentize'    " :RTFPygmentize
 if s:uname == "Darwin\n"
 Plugin 'zerowidth/vim-copy-as-rtf'      " :CopyRTF
+Plugin 'airblade/vim-gitgutter'
 endif
 
 " Documentation
@@ -137,6 +138,17 @@ nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 imap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 nmap <F2> :.w !pbcopy<CR><CR>
 vmap <F2> :w !pbcopy<CR><CR>
+
+" Removes trailing spaces
+ function! TrimWhiteSpace()
+     %s/\s\+$//e
+ endfunction
+
+ nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
+ autocmd FileWritePre    * :call TrimWhiteSpace()
+ autocmd FileAppendPre   * :call TrimWhiteSpace()
+ autocmd FilterWritePre  * :call TrimWhiteSpace()
+ autocmd BufWritePre     * :call TrimWhiteSpace()
 
 " fuzzy search with ctrlp
 let g:ctrlp_map = '<c-p>'
