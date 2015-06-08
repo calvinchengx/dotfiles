@@ -1,5 +1,11 @@
 if has("unix")
   let s:uname = system("uname")
+  if s:uname == "Linux\n"
+    let g:nixos = system('[[ "`cat /proc/version`" == *"NixOS"* ]] && echo NixOS')
+    if g:nixos =~ "NixOS"
+        let g:distro = "NixOS"
+    endif
+  endif
   if s:uname == "Darwin\n"
     " Do Mac stuff here
     ":echo s:uname
@@ -34,7 +40,10 @@ Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 
 " syntax checking and autocomplete
-Plugin 'Valloric/YouCompleteMe'
+" not loading YouCompleteMe from here if we are using NixOS
+if g:distro !~ "NixOS"
+    Plugin 'Valloric/YouCompleteMe'
+endif
 Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
 Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py
@@ -42,11 +51,16 @@ Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py
 " syntax checking and autocomplete - Haskell
 "Plugin 'Shougo/neocomplete'
 Plugin 'eagletmt/neco-ghc'
-Plugin 'eagletmt/ghcmod-vim'
 " Disabled haskellmode-vim at the moment because it screws up our search
 " Plugin 'lukerandall/haskellmode-vim'
-Plugin 'Shougo/vimproc'
-Plugin 'bitc/vim-hdevtools'
+if g:distro !~ "NixOS"
+    " On NixOS, I have vimproc, ghcmod-vim and hdevtools installed globally via
+    " /etc/nixos/configuration.nix
+    Plugin 'Shougo/vimproc'
+    Plugin 'eagletmt/ghcmod-vim'
+    Plugin 'bitc/vim-hdevtools'
+endif
+
 Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'Twinside/vim-hoogle'
 Plugin 'calvinchengx/lpaste'
