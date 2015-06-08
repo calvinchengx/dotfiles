@@ -60,6 +60,7 @@ if g:distro !~ "NixOS"
     Plugin 'Shougo/vimproc'
     Plugin 'eagletmt/ghcmod-vim'
     Plugin 'bitc/vim-hdevtools'
+    Plugin 'Twinside/vim-syntax-haskell-cabal'
 endif
 
 Plugin 'pbrisbin/vim-syntax-shakespeare'
