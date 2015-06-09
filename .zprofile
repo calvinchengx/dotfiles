@@ -106,6 +106,8 @@ export PATH=$HOME/bin:$PATH
 myDir=${0:a:h}
 source $myDir/common.sh
 
+export NIX_PATH=nixpkgs=$HOME/nixpkgs:$NIX_PATH
+
 # Permit C-s mapping in vim
 stty start undef
 stty stop undef
