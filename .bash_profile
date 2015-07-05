@@ -45,3 +45,5 @@ if [[ $DISTRO == "Darwin" ]]; then
 fi
 
 source $HOME/.autoenv/activate.sh
+
+export NIX_PATH=nixpkgs=$HOME/nixpkgs:$NIX_PATH
