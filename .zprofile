@@ -106,7 +106,21 @@ export PATH=$HOME/bin:$PATH
 myDir=${0:a:h}
 source $myDir/common.sh
 
-export NIX_PATH=nixpkgs=$HOME/nixpkgs:$NIX_PATH
+# Haskell Platform
+export PATH="$HOME/Library/Haskell/bin:$PATH"
+
+# Prioritize my globally-installed cabal binaries
+#export PATH=$HOME/.cabal/bin:$PATH
+
+# Nix and NixOps
+#export NIX_PATH=nixpkgs=$HOME/nixpkgs
+#export NIX_BUILD_HOOK=$HOME/.nix-profile/libexec/nix/build-remote.pl
+#export NIX_CURRENT_LOAD=/tmp/current-load
+#export NIX_REMOTE_SYSTEMS=$HOME/remote-systems.conf
+
+# Required on Darwin so nix-env can find specific global header files
+#export NIX_CFLAGS_COMPILE="-idirafter /usr/include"
+#export NIX_CFLAGS_LINK="-L/usr/lib"
 
 # Permit C-s mapping in vim
 stty start undef
