@@ -78,6 +78,10 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'moll/vim-node'
 
+" JavaScript meteor
+Plugin 'Slava/tern-meteor'
+Plugin 'Slava/vim-spacebars'
+
 " syntax checking - JSON
 Plugin 'elzr/vim-json'
 
