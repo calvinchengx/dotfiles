@@ -77,6 +77,7 @@ Plugin 'lambdatoast/elm.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'moll/vim-node'
+Plugin 'facebook/vim-flow'
 
 " JavaScript meteor
 Plugin 'Slava/tern-meteor'
@@ -351,8 +352,7 @@ augroup END
 augroup JAVASCRIPT
     autocmd!
     autocmd BufNewFile,BufRead *.js,*.jsx set filetype=javascript
-    autocmd BufNewFile,BufRead *.js,*.jsx setlocal shiftwidth=2
-    autocmd BufNewFile,BufRead *.js,*.jsx setlocal tabstop=4
+    autocmd BufNewFile,BufRead *.js,*.jsx setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
     autocmd FileType javascript setlocal comments-=:// comments+=f://   " disable autocommenting after opening a newline
     " npm install -g eslint babel-eslint eslint-plugin-react
     autocmd FileType javascript let g:syntastic_javascript_checkers = ['eslint']
