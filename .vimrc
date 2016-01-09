@@ -321,18 +321,18 @@ let g:tmuxify_run = {
 autocmd BufWritePre *.* :keepjumps :%s/\s+$//e
 
 " Language settings
-source .vimrc_c
-source .vimrc_jade
-source .vimrc_yaml
-source .vimrc_haskell
-source .vimrc_python
-source .vimrc_jinja
-source .vimrc_javascript
-source .vimrc_json
-source .vimrc_ruby
-source .vimrc_lisp
-source .vimrc_markdown
-source .vimrc_java
+source ~/.vimrc_c
+source ~/.vimrc_jade
+source ~/.vimrc_yaml
+source ~/.vimrc_haskell
+source ~/.vimrc_python
+source ~/.vimrc_jinja
+source ~/.vimrc_javascript
+source ~/.vimrc_json
+source ~/.vimrc_ruby
+source ~/.vimrc_lisp
+source ~/.vimrc_markdown
+source ~/.vimrc_java
 
 " Using Marc Weber's VAM, in order to load his nix addon.
 set nocompatible | filetype indent plugin on | syn on
