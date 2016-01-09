@@ -21,6 +21,19 @@ fi
 
 symlink ".vimrc"
 symlink ".vimrc_basic"
+symlink ".vimrc_c"
+symlink ".vimrc_jade"
+symlink ".vimrc_yaml"
+symlink ".vimrc_haskell"
+symlink ".vimrc_python"
+symlink ".vimrc_jinja"
+symlink ".vimrc_javascript"
+symlink ".vimrc_json"
+symlink ".vimrc_ruby"
+symlink ".vimrc_lisp"
+symlink ".vimrc_markdown"
+symlink ".vimrc_java"
+
 mkdir -p $HOME/.vim/bundle
 [[ ! -d "$HOME/.vim/bundle/vundle" ]] && git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/vundle
 [[ $INSTALL_TYPE == "full" ]] && vim -c VundleUpdate -c quitall
@@ -72,10 +85,10 @@ mkdir -p $HOME/.config/htop
 symlink ".config/htop/htoprc"
 
 # YouCompleteMe
-if [[ $DISTRO -ne "NixOS" ]]; then 
+if [[ $DISTRO -ne "NixOS" ]]; then
     YCM_COMPILED=$(find $HOME/.vim/bundle/YouCompleteMe/ -name "ycm_client_support.*" | grep -o "ycm_client_support")
     if [[ -z $YCM_COMPILED ]]; then
-        bash $HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer
+        bash $HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer --omnisharp-completer --gocode-completer --tern-completer --racer-completer
         symlink ".ycm_extra_conf.py"
     fi
 fi

@@ -134,7 +134,7 @@ use_haskell() {
             # sudo port -v install ghc
             # sudo port -v install hs-cabal-install
             HS_BIN="/opt/local/bin"
-            CABAL_BIN="/opt/local/haskell/bin" # Must be in .cabal/config.macports
+            CABAL_BIN="/opt/local/bin" # Must be in .cabal/config.macports
             if [[ ! -d "$CABAL_BIN" ]]; then
                 sudo mkdir -p $CABAL_BIN
             fi
