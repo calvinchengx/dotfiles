@@ -1,0 +1,8 @@
+augroup YAML
+    autocmd!
+    autocmd BufNewFile,BufRead *.yaml set filetype=yaml
+    autocmd BufNewFile,BufRead *.yaml setlocal shiftwidth=2
+    autocmd BufNewFile,BufRead *.yaml setlocal tabstop=2
+    autocmd BufNewFile,BufRead *.yaml setlocal softtabstop=2
+    autocmd BufNewFile,BufRead *.yaml setlocal expandtab
+augroup END

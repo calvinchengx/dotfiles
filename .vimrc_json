@@ -1,0 +1,6 @@
+augroup JSON
+    autocmd!
+    autocmd BufNewFile,BufRead *.json set filetype=json
+    autocmd FileType json let g:vim_json_syntax_conceal = 0
+    autocmd FileType json let g:syntastic_json_checkers = ['jsonlint']
+augroup END

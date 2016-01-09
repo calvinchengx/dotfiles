@@ -1,0 +1,10 @@
+augroup RUBY
+    autocmd!
+    autocmd BufNewFile,BufRead Gemfile set filetype=ruby
+    autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
+    autocmd BufNewFile,BufRead Berksfile set filetype=ruby
+    autocmd BufNewFile,BufRead *.rb set filetype=ruby
+    autocmd BufNewFile,BufRead *.rb setlocal shiftwidth=2
+    autocmd BufNewFile,BufRead *.rb setlocal tabstop=2
+    autocmd BufNewFile,BufRead *.rb setlocal softtabstop=2
+augroup END

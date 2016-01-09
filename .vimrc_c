@@ -1,0 +1,11 @@
+augroup C
+    autocmd!
+    " also handles sub-type doxygen
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+    autocmd FileType c let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+    autocmd FileType c let g:ycm_confirm_extra_conf = 0
+    autocmd FileType c setlocal tabstop=4
+    autocmd FileType c setlocal softtabstop=4
+    autocmd FileType c setlocal shiftwidth=4
+    autocmd FileType c setlocal expandtab
+augroup END

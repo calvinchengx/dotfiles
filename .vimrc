@@ -47,7 +47,7 @@ if g:distro !~ "NixOS"
 endif
 Plugin 'scrooloose/syntastic'
 Plugin 'mxw/vim-jsx'
-Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py
+"Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py
 
 " syntax checking and autocomplete - Haskell
 "Plugin 'Shougo/neocomplete'
@@ -70,8 +70,17 @@ Plugin 'calvinchengx/lpaste'
 " syntax - Jinja templates
 Plugin 'lepture/vim-jinja'
 
+" syntax - systemd service files
+Plugin 'Matt-Deacalion/vim-systemd-syntax'
+
+" syntax = yaml
+Plugin 'stephpy/vim-yaml'
+
+" syntax - vim-jade
+Plugin 'digitaltoad/vim-jade'
+
 " syntax - Elm-Lang
-Plugin 'lambdatoast/elm.vim'
+"Plugin 'lambdatoast/elm.vim'
 
 " syntax checking - JavaScript
 Plugin 'pangloss/vim-javascript'
@@ -96,7 +105,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'luochen1990/rainbow'
 
 " Hex mode editing
-Plugin 'vim-scripts/hexman.vim'
+"Plugin 'vim-scripts/hexman.vim'
 
 " superior lisp interaction mode for vim (slime)
 Plugin 'kovisoft/slimv'
@@ -112,6 +121,9 @@ Plugin 'mhinz/vim-tmuxify'
 " Running tests in vim
 Plugin 'calvinchengx/vim-test'
 Plugin 'tpope/vim-dispatch'
+
+" vim-raml
+Plugin 'IN3D/vim-raml'
 
 "Plugin 'idbrii/AsyncCommand'
 Plugin 'jimf/vim-red-green'
@@ -273,6 +285,16 @@ let g:ycm_semantic_triggers =  {
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
   \ }
+" If you prefer the Omni-Completion tip window to close when a selection is
+" " made, these lines close it on movement in insert mode or when leaving
+" " insert mode
+" This is a better approach because documentation can still be seen when
+" typing
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" This method is introduced in vim 7.4 but closes the preview buffer too early
+" in my opinion
+" autocmd CompleteDone * pclose
 
 " Plugin 'Shougo/neocomplete'
 let g:neocomplete#enable_at_startup=1
@@ -299,108 +321,18 @@ let g:tmuxify_run = {
 autocmd BufWritePre *.* :keepjumps :%s/\s+$//e
 
 " Language settings
-augroup C
-    autocmd!
-    " also handles sub-type doxygen
-    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
-    autocmd FileType c let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-    autocmd FileType c let g:ycm_confirm_extra_conf = 0
-    autocmd FileType c setlocal tabstop=4
-    autocmd FileType c setlocal softtabstop=4
-    autocmd FileType c setlocal shiftwidth=4
-    autocmd FileType c setlocal expandtab
-augroup END
-
-augroup HASKELL
-    autocmd!
-    autocmd BufNewFile,BufRead *.hs set filetype=haskell
-    autocmd BufNewFile,BufRead *.hs setlocal shiftwidth=4
-    autocmd BufNewFile,BufRead *.hs setlocal tabstop=8
-    autocmd BufNewFile,BufRead *.hs setlocal softtabstop=4
-    autocmd BufNewFile,BufRead *.hs setlocal expandtab
-    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-    autocmd FileType haskell let g:necoghc_enable_detailed_browse=1
-    " Set compiler (haskellmode-vim)
-    "autocmd BufEnter *.hs compiler ghc " <-- This line screws up :grep and :Ag
-    " Active keys to control syntastic in haskell filetype
-    autocmd FileType haskell map <silent> <Leader>e :Errors<CR>
-    autocmd FileType haskell map <Leader>s :SyntasticToggleMode<CR>
-    " Plugin 'bitc/vim-hdevtools'
-    autocmd FileType haskell nnoremap <buffer> <C-h> :HdevtoolsType<CR>
-    autocmd FileType haskell nnoremap <buffer> <silent> <C-j> :HdevtoolsClear<CR>
-    autocmd FileType haskell nnoremap <buffer> <silent> <C-k> :HdevtoolsInfo<CR>
-    " Plugin 'lukerandall/haskellmode-vim' and ghc-mod integration
-    "autocmd FileType haskell map <silent> tu :call GHC_BrowseAll()<CR> " ghc-mod reload
-    "autocmd FileType haskell map <silent> tw :call GHC_ShowType(1)<CR> " type lookup
-augroup END
-
-augroup PYTHON
-    autocmd!
-    autocmd BufNewFile,BufRead *.py set filetype=python
-    autocmd FileType python set omnifunc=pythoncomplete#Complete
-    autocmd BufNewFile,BufRead *.py setlocal shiftwidth=4
-    autocmd BufNewFile,BufRead *.py setlocal tabstop=4
-    autocmd BufNewFile,BufRead *.py setlocal softtabstop=4
-    autocmd BufNewFile,BufRead *.py setlocal expandtab
-augroup END
-
-augroup JINJA
-    autocmd!
-    autocmd BufNewFile,BufRead *.j2 set filetype=jinja
-augroup END
-
-augroup JAVASCRIPT
-    autocmd!
-    autocmd BufNewFile,BufRead *.js,*.jsx set filetype=javascript
-    autocmd BufNewFile,BufRead *.js,*.jsx setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
-    autocmd FileType javascript setlocal comments-=:// comments+=f://   " disable autocommenting after opening a newline
-    " npm install -g eslint babel-eslint eslint-plugin-react
-    autocmd FileType javascript let g:syntastic_javascript_checkers = ['eslint']
-    autocmd FileType javascript let g:syntastic_javascript_jshint_args = '--config ' . $HOME . '/.jshintrc ' . '--exclude-path ' . $HOME . '/.jshintignore '
-    autocmd FileType javascript let g:tern_map_keys=1
-    autocmd FileType javascript let g:tern_show_argument_hints='on_hold'
-    autocmd FileType javascript map <leader>td :TernDoc<CR>
-    autocmd FileType javascript map <leader>tt :TernType<CR>
-    autocmd FileType javascript map <leader>td :TernDef<CR>
-    autocmd FileType javascript map <leader>tR :TernRename<CR>
-    " we run npm test, by default; if no arguments is given to :Dispatch call
-    autocmd FileType javascript let b:dispatch = 'npm test %'
-augroup END
-
-augroup JSON
-    autocmd!
-    autocmd BufNewFile,BufRead *.json set filetype=json
-    autocmd FileType json let g:vim_json_syntax_conceal = 0
-    autocmd FileType json let g:syntastic_json_checkers = ['jsonlint']
-augroup END
-
-augroup RUBY
-    autocmd!
-    autocmd BufNewFile,BufRead Gemfile set filetype=ruby
-    autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
-    autocmd BufNewFile,BufRead Berksfile set filetype=ruby
-    autocmd BufNewFile,BufRead *.rb set filetype=ruby
-    autocmd BufNewFile,BufRead *.rb setlocal shiftwidth=2
-    autocmd BufNewFile,BufRead *.rb setlocal tabstop=2
-    autocmd BufNewFile,BufRead *.rb setlocal softtabstop=2
-augroup END
-
-augroup LISP
-    autocmd!
-    autocmd BufNewFile,BufRead *.lisp set filetype=lisp
-    autocmd FileType let g:rainbow_active = 1
-    autocmd FileType let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &'
-augroup END
-
-augroup MARKDOWN
-    autocmd!
-    autocmd BufNewFile,BufRead *.md set filetype=markdown
-augroup END
-
-augroup JAVA
-    autocmd!
-    autocmd BufNewFile,BufRead *.java set filetype=java
-augroup END
+source .vimrc_c
+source .vimrc_jade
+source .vimrc_yaml
+source .vimrc_haskell
+source .vimrc_python
+source .vimrc_jinja
+source .vimrc_javascript
+source .vimrc_json
+source .vimrc_ruby
+source .vimrc_lisp
+source .vimrc_markdown
+source .vimrc_java
 
 " Using Marc Weber's VAM, in order to load his nix addon.
 set nocompatible | filetype indent plugin on | syn on

@@ -1,0 +1,8 @@
+augroup JADE
+    autocmd!
+    autocmd BufNewFile,BufRead *.jade set filetype=jade
+    autocmd BufNewFile,BufRead *.jade setlocal shiftwidth=2
+    autocmd BufNewFile,BufRead *.jade setlocal tabstop=2
+    autocmd BufNewFile,BufRead *.jade setlocal softtabstop=2
+    autocmd BufNewFile,BufRead *.jade setlocal expandtab
+augroup END

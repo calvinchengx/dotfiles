@@ -1,0 +1,4 @@
+augroup JAVA
+    autocmd!
+    autocmd BufNewFile,BufRead *.java set filetype=java
+augroup END
