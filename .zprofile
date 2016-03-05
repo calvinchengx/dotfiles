@@ -42,19 +42,19 @@ setopt prompt_subst
 autoload -U colors && colors
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' actionformats \
-	'%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats       \
-	'%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+    '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
 zstyle ':vcs_info:*' enable git cvs svn
 
 # or use pre_cmd, see man zshcontrib
 vcs_info_wrapper() {
-  vcs_info
-  if [ -n "$vcs_info_msg_0_" ]; then
-	echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}"
-  fi
+    vcs_info
+    if [ -n "$vcs_info_msg_0_" ]; then
+        echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}"
+    fi
 }
 
 # Build the prompt
@@ -68,49 +68,77 @@ PROMPT+="
 " # Newline
 PROMPT+="%n %# "  # Username and prompt
 
+# Access credentials
+source $HOME/.secrets
+
+# Useful functions
+# Simple usage example:
+# search_and_replace hello world "." "*" "Godeps"
+function search_and_replace() {
+
+    local search=$1
+    local replace=$2
+    local directory=${3:-"."}
+    local filetype=${4:-"*"}
+    local exclude=${5:-""}
+
+    echo "Searching for "${search}
+    echo "and replacing with "${replace}
+    echo "starting from directory "${directory}
+    echo "for file types "${filetype}
+    echo "excluding directory "${exclude}
+
+    # bash version
+    # read -r -p "Are you sure? [y/N] " response
+    # response=${response,,}    # tolower
+    #
+    # zsh version
+    read "response?Are you sure? [y/N] "
+
+    if [[ $response =~ ^(yes|y)$ ]]
+    then
+
+        LC_ALL=C && LC_CTYPE=C && LANG=C
+
+        find ${directory} -type f -name "*.${filetype}" ! -path "*/"${exclude}"/*" ! -path "*/.git/*" -print0 | xargs -0 sed -i '' 's/'${search}'/'${replace}'/g'
+
+        LC_ALL=en_US.UTF-8 && LC_CTYPE=en_US.UTF-8 && LANG=en_US.UTF-8
+    fi
+}
+
 # defaults
-export PATH="/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:$PATH";
+export PATH="/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:$PATH";
+
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
 # macports
-export PATH="/opt/local/bin:/opt/local/sbin:/usr/X11/bin:$PATH";
-
-# python
-export PATH="/opt/local/library/Frameworks/Python.framework/Versions/2.7/bin:$PATH";
-
-# golang
-export PATH="/usr/local/go/bin:$PATH";
+#export PATH="/opt/local/bin:/opt/local/sbin:/usr/X11/bin:$PATH";
 
 # android
-export PATH="/Applications/Android Studio.app/sdk/platform-tools:/Applications/Android Studio.app/sdk/tools:$PATH";
-export ANDROID_HOME="/Applications/Android Studio.app/sdk";
+#export PATH="/Applications/Android Studio.app/sdk/platform-tools:/Applications/Android Studio.app/sdk/tools:$PATH";
+#export ANDROID_HOME="/Applications/Android Studio.app/sdk";
+#export PATH="$HOME/android-sdk/platform-tools:$HOME/android-sdk/tools:$PATH";
+#export ANDROID_HOME="$HOME/android-sdk";
 
 # c
 #export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 
-# javascript
-export PHANTOMJS_BIN="/opt/local/bin/phantomjs"
-
 # docker
 export DOCKER_HOST=tcp://127.0.0.1:4243
-
-# Carlson Minot cross compiler
-export PATH=/usr/local/carlson-minot/crosscompilers/bin:$PATH
-
-# packer
-export PATH=/usr/local/bin/packer:$PATH
 
 # training
 export PATH=$HOME/bin:$PATH
 
+# Kubernetes: fleetctl and etcdctl
+export PATH="$HOME/k8s-bin:$PATH"
+
 # Load common functions and aliases
-myDir=${0:a:h}
+#myDir=${0:a:h}
+myDir=$HOME
 source $myDir/common.sh
 
-# Haskell Platform
-export PATH="$HOME/Library/Haskell/bin:$PATH"
-
-# Prioritize my globally-installed cabal binaries
-#export PATH=$HOME/.cabal/bin:$PATH
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
 # Nix and NixOps
 #export NIX_PATH=nixpkgs=$HOME/nixpkgs
@@ -126,6 +154,8 @@ export PATH="$HOME/Library/Haskell/bin:$PATH"
 stty start undef
 stty stop undef
 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # Experimental
 source ~/antigen.zsh
 
@@ -134,3 +164,8 @@ antigen bundle zsh-users/zsh-completions src
 antigen bundle tarruda/zsh-autosuggestions
 
 antigen apply
+
+source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+source /opt/homebrew-cask/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+
+source /usr/local/opt/autoenv/activate.sh
