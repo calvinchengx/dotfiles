@@ -157,9 +157,9 @@ stty stop undef
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Experimental
-source ~/antigen.zsh
+source /usr/local/share/antigen.zsh
 
-antigen bundle zsh-users/zsh-syntax-highlighting
+#antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions src
 antigen bundle tarruda/zsh-autosuggestions
 

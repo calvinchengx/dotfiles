@@ -19,6 +19,13 @@ if [[ $DISTRO == "Darwin" ]] && [[ -z "`which vim`" ]]; then
     sudo port install vim +huge +python27 +gtk2 +lua
 fi
 
+brew install autoenv
+brew install nvm
+brew install antigen
+brew cask install google-cloud-sdk
+git clone git@gitlab.calvinx.com:calvin/secrets.git ../
+cp -f ../secrets/.secrets $HOME/.secrets
+
 symlink ".vimrc"
 symlink ".vimrc_basic"
 symlink ".vimrc_c"
