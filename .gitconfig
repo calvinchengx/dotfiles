@@ -31,5 +31,9 @@
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
-;[url "git@github.com:"]
-	;insteadOf = https://github.com/
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[credential]
+	helper = cache --timeout=3600
