@@ -25,6 +25,9 @@ function prompt {
 
 prompt
 
+# Android Studio
+export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk
+
 # Make sure tmux works properly
 if [[ $TERM == "screen" ]]; then
     TERM=screen-256color

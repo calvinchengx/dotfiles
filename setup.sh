@@ -28,6 +28,7 @@ cp -f ../secrets/.secrets $HOME/.secrets
 
 symlink ".vimrc"
 symlink ".vimrc_basic"
+symlink ".vimrc_go"
 symlink ".vimrc_c"
 symlink ".vimrc_jade"
 symlink ".vimrc_yaml"

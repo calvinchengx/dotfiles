@@ -123,6 +123,10 @@ source $(brew --prefix nvm)/nvm.sh
 
 # c
 #export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
+#
+
+# Android Studio
+export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk
 
 # docker
 export DOCKER_HOST=tcp://127.0.0.1:4243

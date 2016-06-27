@@ -14,6 +14,7 @@ if has("unix")
 endif
 
 set nocompatible
+set sessionoptions-=options
 filetype off " Disable filetype functionality to use vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
@@ -36,6 +37,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
+Plugin 'xolox/vim-misc'      " dependency of vim-session
+Plugin 'xolox/vim-session'  " vim-session is mksession on steroids
 
 " code navigation
 Plugin 'majutsushi/tagbar'
@@ -321,6 +324,7 @@ let g:tmuxify_run = {
 autocmd BufWritePre *.* :keepjumps :%s/\s+$//e
 
 " Language settings
+source ~/.vimrc_go
 source ~/.vimrc_c
 source ~/.vimrc_jade
 source ~/.vimrc_yaml
