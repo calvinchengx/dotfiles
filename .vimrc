@@ -70,6 +70,12 @@ Plugin 'pbrisbin/vim-syntax-shakespeare'
 Plugin 'Twinside/vim-hoogle'
 Plugin 'calvinchengx/lpaste'
 
+" syntax - Dockerfile
+Plugin 'ekalinin/Dockerfile.vim'
+
+" syntax - toml
+Plugin 'cespare/vim-toml'
+
 " syntax - Jinja templates
 Plugin 'lepture/vim-jinja'
 
@@ -174,6 +180,8 @@ nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 imap <F1> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 nmap <F2> :.w !pbcopy<CR><CR>
 vmap <F2> :w !pbcopy<CR><CR>
+
+let g:session_autosave = 'yes'
 
 " Removes trailing spaces
  function! TrimWhiteSpace()
