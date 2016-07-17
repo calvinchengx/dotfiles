@@ -104,8 +104,11 @@ Plugin 'Slava/vim-spacebars'
 " syntax checking - JSON
 Plugin 'elzr/vim-json'
 
-"syntax - golang
+" syntax - golang
 Plugin 'fatih/vim-go'
+
+" syntax - css
+Plugin 'JulesWang/css.vim'
 
 " syntax - haml, sass and scss
 Plugin 'tpope/vim-haml'
