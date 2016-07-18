@@ -170,7 +170,18 @@ antigen bundle tarruda/zsh-autosuggestions
 
 antigen apply
 
+# google cloud sdk
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
+# autoenv
 source /usr/local/opt/autoenv/activate.sh
+
+# Kill all running containers.
+alias dockerkillall='docker kill $(docker ps -q)'
+# Delete all stopped containers.
+alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
+# Delete all untagged images.
+alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
+# Delete all stopped containers and untagged images.
+alias dockerclean='dockercleanc || true && dockercleani'
