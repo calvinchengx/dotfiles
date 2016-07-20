@@ -97,6 +97,9 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'moll/vim-node'
 Plugin 'facebook/vim-flow'
 
+" syntax - Java
+Plugin 'hsanson/vim-android'
+
 " JavaScript meteor
 Plugin 'Slava/tern-meteor'
 Plugin 'Slava/vim-spacebars'

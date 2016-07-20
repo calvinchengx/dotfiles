@@ -178,7 +178,11 @@ source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.z
 source /usr/local/opt/autoenv/activate.sh
 
 # Kill all running containers.
-alias dockerkillall='docker kill $(docker ps -q)'
+dockerkillall() {
+    KILL_LIST=`docker ps --no-trunc -q | grep -v $(docker inspect --format="{{.Id}}" dinghy_http_proxy)`
+    docker kill `echo $KILL_LIST`
+}
+
 # Delete all stopped containers.
 alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
 # Delete all untagged images.
