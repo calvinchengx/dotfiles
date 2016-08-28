@@ -37,3 +37,5 @@
 	required = true
 [credential]
 	helper = cache --timeout=3600
+[url "git@gitlab.calvinx.com:"]
+	insteadOf = https://gitlab.calvinx.com/

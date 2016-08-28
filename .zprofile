@@ -72,10 +72,18 @@ PROMPT+="%n %# "  # Username and prompt
 source $HOME/.secrets
 
 # Useful functions
-# Simple usage example:
-# search_and_replace hello world "." "*" "Godeps"
 function search_and_replace() {
-
+    # Usage:
+    #
+    # search for "hello"
+    # replace with "world"
+    # from current directory "."
+    # for all files "*"
+    # excluding "Godeps" directory
+    # search_and_replace hello world "." "*" "Godeps"
+    #
+    # Another example:
+    # search_and_replace "sh_api\/" "" . go "vendor"
     local search=$1
     local replace=$2
     local directory=${3:-"."}
