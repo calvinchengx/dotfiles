@@ -19,7 +19,7 @@ do
     if [[ $installed = *[!\ ]* ]]; then
         echo "${red}${cask}${reset} requires ${red}update${reset}."
         (set -x; brew cask uninstall $cask --force;)
-        (set -x; brew cask install $cask --force;)
+        (set -x; brew cask install --force $cask;)
     else
         echo "${red}${cask}${reset} is ${green}up-to-date${reset}."
     fi
