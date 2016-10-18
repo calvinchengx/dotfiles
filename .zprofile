@@ -170,17 +170,20 @@ stty stop undef
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Experimental
-source $(brew --prefix)/share/antigen/antigen.zsh
-
+#source $(brew --prefix)/share/antigen/antigen.zsh
 #antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions src
-antigen bundle tarruda/zsh-autosuggestions
+#antigen bundle zsh-users/zsh-completions src
+#antigen bundle tarruda/zsh-autosuggestions
+#antigen apply
 
-antigen apply
+fpath=(/usr/local/share/zsh-completions $fpath)
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 
 # google cloud sdk
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+#source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
 # autoenv
 source /usr/local/opt/autoenv/activate.sh

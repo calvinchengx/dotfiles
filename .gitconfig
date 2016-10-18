@@ -32,9 +32,9 @@
 	smudge = git hawser smudge %f
 	required = true
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
 	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 [credential]
 	helper = cache --timeout=3600
 [url "git@gitlab.calvinx.com:"]
