@@ -149,7 +149,7 @@ export PATH="$HOME/k8s-bin:$PATH"
 #myDir=${0:a:h}
 myDir=$HOME
 source $myDir/common.sh
-source $HOME/work/task-logger.sh
+source $myDir/task-logger.sh
 
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
