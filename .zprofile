@@ -47,7 +47,7 @@ zstyle ':vcs_info:*' formats       \
     '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
-zstyle ':vcs_info:*' enable git cvs svn
+zstyle ':vcs_info:*' enable git cvs svn hg
 
 # or use pre_cmd, see man zshcontrib
 vcs_info_wrapper() {
@@ -117,24 +117,12 @@ function search_and_replace() {
 # defaults
 export PATH="/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:$PATH";
 
+# node nvm
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-# macports
-#export PATH="/opt/local/bin:/opt/local/sbin:/usr/X11/bin:$PATH";
-
-# android
-#export PATH="/Applications/Android Studio.app/sdk/platform-tools:/Applications/Android Studio.app/sdk/tools:$PATH";
-#export ANDROID_HOME="/Applications/Android Studio.app/sdk";
-#export PATH="$HOME/android-sdk/platform-tools:$HOME/android-sdk/tools:$PATH";
-#export ANDROID_HOME="$HOME/android-sdk";
-
 # c
-#export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
-#
-
-# Android Studio
-export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk
+export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 
 # docker
 export DOCKER_HOST=tcp://127.0.0.1:4243
@@ -142,39 +130,33 @@ export DOCKER_HOST=tcp://127.0.0.1:4243
 # training
 export PATH=$HOME/bin:$PATH
 
-# Kubernetes: fleetctl and etcdctl
-export PATH="$HOME/k8s-bin:$PATH"
+## Kubernetes: fleetctl and etcdctl
+#export PATH="$HOME/k8s-bin:$PATH"
 
-# Load common functions and aliases
-#myDir=${0:a:h}
+## Load common functions and aliases
+##myDir=${0:a:h}
 myDir=$HOME
 source $myDir/common.sh
-source $myDir/task-logger.sh
+#source $myDir/task-logger.sh
 
+# VirtualBox
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
 # Nix and NixOps
-#export NIX_PATH=nixpkgs=$HOME/nixpkgs
-#export NIX_BUILD_HOOK=$HOME/.nix-profile/libexec/nix/build-remote.pl
-#export NIX_CURRENT_LOAD=/tmp/current-load
-#export NIX_REMOTE_SYSTEMS=$HOME/remote-systems.conf
+export NIX_PATH=nixpkgs=$HOME/nixpkgs
+export NIX_BUILD_HOOK=$HOME/.nix-profile/libexec/nix/build-remote.pl
+export NIX_CURRENT_LOAD=/tmp/current-load
+export NIX_REMOTE_SYSTEMS=$HOME/remote-systems.conf
 
 # Required on Darwin so nix-env can find specific global header files
-#export NIX_CFLAGS_COMPILE="-idirafter /usr/include"
-#export NIX_CFLAGS_LINK="-L/usr/lib"
+export NIX_CFLAGS_COMPILE="-idirafter /usr/include"
+export NIX_CFLAGS_LINK="-L/usr/lib"
 
 # Permit C-s mapping in vim
 stty start undef
 stty stop undef
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Experimental
-#source $(brew --prefix)/share/antigen/antigen.zsh
-#antigen bundle zsh-users/zsh-syntax-highlighting
-#antigen bundle zsh-users/zsh-completions src
-#antigen bundle tarruda/zsh-autosuggestions
-#antigen apply
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -183,7 +165,7 @@ export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/h
 
 # google cloud sdk
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-#source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
 # autoenv
 source /usr/local/opt/autoenv/activate.sh
