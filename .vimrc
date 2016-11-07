@@ -289,7 +289,7 @@ let g:tagbar_type_haskell = {
 endif
 
 " Plugin 'Valloric/YouCompleteMe'
-let g:ycm_path_to_python_interpreter = '/usr/local/bin/python'
+let g:ycm_server_python_interpreter = '/usr/local/bin/python'
 let g:ycm_semantic_triggers =  {
   \   'c' : ['->', '.'],
   \   'objc' : ['->', '.'],

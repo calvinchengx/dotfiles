@@ -38,7 +38,6 @@ nginx
 nodenv
 nvm
 onepass
-panamax
 perl
 phantomjs
 homebrew/php/php70
@@ -54,7 +53,6 @@ rust
 sassc
 speedtest_cli
 ssh-copy-id
-sshpass
 sslmate
 the_silver_searcher
 tmux
