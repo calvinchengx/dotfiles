@@ -107,6 +107,9 @@ Plugin 'Slava/vim-spacebars'
 " syntax checking - JSON
 Plugin 'elzr/vim-json'
 
+" syntax - swift
+Plugin 'keith/swift.vim'
+
 " syntax - golang
 Plugin 'fatih/vim-go'
 

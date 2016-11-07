@@ -1,0 +1,4 @@
+augroup SWIFT
+    autocmd!
+    let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
+augroup END
