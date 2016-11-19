@@ -142,6 +142,11 @@ source $myDir/common.sh
 # VirtualBox
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 
+# Android
+ANDROID_HOME=~/Library/Android/sdk
+ANDROID_PLATFORM_TOOLS=$ANDROID_HOME/platform-tools
+PATH=$PATH:$ANDROID_PLATFORM_TOOLS
+
 # Nix and NixOps
 export NIX_PATH=nixpkgs=$HOME/nixpkgs
 export NIX_BUILD_HOOK=$HOME/.nix-profile/libexec/nix/build-remote.pl
