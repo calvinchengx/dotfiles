@@ -7,7 +7,7 @@ setopt interactivecomments
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/Users/calvin/.zshrc'
+#zstyle :compinstall filename '/Users/calvin/.zshrc'
 
 autoload -Uz compinit
 compinit

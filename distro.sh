@@ -3,7 +3,7 @@ getDistro() {
 
     if [[ "`uname`" == "Darwin" ]]; then
         local DISTRO="Darwin";
-    elif [ "`uname`" == "Linux" ]; then
+    elif [[ "`uname`" == "Linux" ]]; then
         local DISTRO="Linux"
         [[ "`cat /proc/version`" == *"NixOS"* ]] && local DISTRO="NixOS"
     else

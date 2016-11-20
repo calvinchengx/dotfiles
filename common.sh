@@ -5,10 +5,14 @@ DISTRO=$(getDistro)
 
 # Checks if type is present and if so return its value
 typeCheck() {
-    if [[ $DISTRO == "Darwin" ]]; then
+    if [[ "$DISTRO" == "Darwin" ]]; then
         local TYPE_CHECK=$(type -w $1 | cut -d " " -f2)
     else
-        local TYPE_CHECK=$(type -t )
+        if [[ "$0" == "-bash" ]]; then
+            local TYPE_CHECK=$(type -t )
+        else
+            local TYPE_CHECK=$(type -f )
+        fi
     fi
 
     if [[ ! $TYPE_CHECK == "none" ]] || [[ ! -z $TYPE_CHECK ]]; then
