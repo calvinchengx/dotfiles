@@ -69,7 +69,9 @@ PROMPT+="
 PROMPT+="%n %# "  # Username and prompt
 
 # Access credentials
-source $HOME/.secrets
+if [[ -a $HOME/.secrets ]]; then
+    source $HOME/.secrets
+fi
 
 # Useful functions
 function search_and_replace() {
