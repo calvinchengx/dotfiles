@@ -121,16 +121,24 @@ export PATH="/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:$PATH"
 
 # node nvm
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+if [[ $(getDistro) == "Darwin" ]]; then
+    source $(brew --prefix nvm)/nvm.sh
+fi
 
 # c
-export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
+if [[ $(getDistro) == "Darwin" ]]; then
+    export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
+fi
 
 # docker
-export DOCKER_HOST=tcp://127.0.0.1:4243
+if [[ $(getDistro) == "Darwin" ]]; then
+    export DOCKER_HOST=tcp://127.0.0.1:4243
+fi
 
 # training
-export PATH=$HOME/bin:$PATH
+if [[ $(getDistro) == "Darwin" ]]; then
+    export PATH=$HOME/bin:$PATH
+fi
 
 ## Kubernetes: fleetctl and etcdctl
 #export PATH="$HOME/k8s-bin:$PATH"
@@ -142,12 +150,16 @@ source $myDir/common.sh
 #source $myDir/task-logger.sh
 
 # VirtualBox
-export VAGRANT_DEFAULT_PROVIDER=virtualbox
+if [[ $(getDistro) == "Darwin" ]]; then
+    export VAGRANT_DEFAULT_PROVIDER=virtualbox
+fi
 
 # Android
-ANDROID_HOME=~/Library/Android/sdk
-ANDROID_PLATFORM_TOOLS=$ANDROID_HOME/platform-tools
-PATH=$PATH:$ANDROID_PLATFORM_TOOLS
+if [[ $(getDistro) == "Darwin" ]]; then
+    ANDROID_HOME=~/Library/Android/sdk
+    ANDROID_PLATFORM_TOOLS=$ANDROID_HOME/platform-tools
+    PATH=$PATH:$ANDROID_PLATFORM_TOOLS
+fi
 
 # Nix and NixOps
 export NIX_PATH=nixpkgs=$HOME/nixpkgs
@@ -165,10 +177,12 @@ stty stop undef
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-fpath=(/usr/local/share/zsh-completions $fpath)
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
-export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+if [[ $(getDistro) == "Darwin" ]]; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+    export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+fi
 
 # google cloud sdk on Darwin
 if [[ $(getDistro) == "Darwin" ]]; then
@@ -177,7 +191,9 @@ if [[ $(getDistro) == "Darwin" ]]; then
 fi
 
 # autoenv
-source /usr/local/opt/autoenv/activate.sh
+if [[ $(getDistro) == "Darwin" ]]; then
+    source /usr/local/opt/autoenv/activate.sh
+fi
 
 # Kill all running containers.
 dockerkillall() {
