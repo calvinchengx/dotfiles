@@ -35,7 +35,10 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [credential]
 	helper = cache --timeout=3600
 [url "git@gitlab.calvinx.com:"]
 	insteadOf = https://gitlab.calvinx.com/
+[http "https://gopkg.in"]
+	followRedirects = true
