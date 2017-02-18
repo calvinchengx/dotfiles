@@ -182,6 +182,8 @@ if [[ "$(getDistro)" == "Darwin" ]]; then
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
     export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+else
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # google cloud sdk on Darwin
