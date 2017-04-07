@@ -53,3 +53,6 @@ export NIX_PATH=nixpkgs=/etc/nixos/nixpkgs:nixos-config=/etc/nixos/configuration
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# added by Anaconda2 4.3.0 installer
+export PATH="/Users/calvin/anaconda2/bin:$PATH"

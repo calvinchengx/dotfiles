@@ -16,4 +16,6 @@ promptinit
 # End of lines added by compinstall
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
+source ~/.zprofile
+
 [[ -s "/Users/calvin/.gvm/scripts/gvm" ]] && source "/Users/calvin/.gvm/scripts/gvm"

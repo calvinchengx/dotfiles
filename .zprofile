@@ -57,9 +57,16 @@ vcs_info_wrapper() {
     fi
 }
 
+docker_machine_info_wrapper() {
+    if [ -n "$DOCKER_MACHINE_NAME" ]; then
+        echo "%{$fg[blue]%}docker::${DOCKER_MACHINE_NAME}%{$reset_color%} "
+    fi
+}
+
 # Build the prompt
 PROMPT=""
 PROMPT+=$'$(vcs_info_wrapper)'  # Version Control
+PROMPT+=$'$(docker_machine_info_wrapper)'
 PROMPT+="%{$fg[red]%}%m %l%{$reset_color%}"  # Host
 PROMPT+="%{$fg[yellow]%} %D{%a %f %b}%{$reset_color%}"  # Date
 PROMPT+="%{$fg[cyan]%} %T%{$reset_color%}"  # Time
@@ -131,14 +138,15 @@ if [[ "$(getDistro)" == "Darwin" ]]; then
     source $(brew --prefix nvm)/nvm.sh
 fi
 
+# fastlane
+if [[ "$(getDistro)" == "Darwin" ]]; then
+    export PATH=$HOME/.fastlane/bin:$PATH
+fi
+
+
 # c
 if [[ "$(getDistro)" == "Darwin" ]]; then
     export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
-fi
-
-# docker
-if [[ "$(getDistro)" == "Darwin" ]]; then
-    export DOCKER_HOST=tcp://127.0.0.1:4243
 fi
 
 # training
@@ -160,6 +168,11 @@ if [[ "$(getDistro)" == "Darwin" ]]; then
     ANDROID_PLATFORM_TOOLS=$ANDROID_HOME/platform-tools
     PATH=$PATH:$ANDROID_PLATFORM_TOOLS
 fi
+
+# Anaconda
+# mv ~/anaconda2/bin/deactivate ~/anaconda2/bin/conda-deactivate
+# to avoid namespace collision between anaconda2's deactivate function and virtualenvwrapper's deactivate function
+PATH=$PATH:~/anaconda2/bin
 
 # Nix and NixOps
 export NIX_PATH=nixpkgs=$HOME/nixpkgs
@@ -202,6 +215,9 @@ dockerkillall() {
     KILL_LIST=`docker ps --no-trunc -q | grep -v $(docker inspect --format="{{.Id}}" dinghy_http_proxy)`
     docker kill `echo $KILL_LIST`
 }
+
+# Stop all containers.
+alias dockercleans='printf "\n>>> Stopping all containers\n\n" && docker stop $(docker ps -a -q)'
 
 # Delete all stopped containers.
 alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'

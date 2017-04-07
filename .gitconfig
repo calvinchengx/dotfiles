@@ -42,3 +42,5 @@
 	insteadOf = https://gitlab.calvinx.com/
 [http "https://gopkg.in"]
 	followRedirects = true
+[http "https://code.google.com"]
+	followRedirects = true
