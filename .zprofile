@@ -60,6 +60,8 @@ vcs_info_wrapper() {
 docker_machine_info_wrapper() {
     if [ -n "$DOCKER_MACHINE_NAME" ]; then
         echo "%{$fg[blue]%}docker::${DOCKER_MACHINE_NAME}%{$reset_color%} "
+    else
+        echo "%{$fg[blue]%}docker::local%{$reset_color%} "
     fi
 }
 
