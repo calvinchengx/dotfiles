@@ -1,7 +1,7 @@
 augroup JAVASCRIPT
     autocmd!
     autocmd BufNewFile,BufRead *.js,*.jsx set filetype=javascript
-    autocmd BufNewFile,BufRead *.js,*.jsx setlocal shiftwidth=4 softtabstop=4 tabstop=4 expandtab
+    autocmd BufNewFile,BufRead *.js,*.jsx setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
     autocmd FileType javascript setlocal comments-=:// comments+=f://   " disable autocommenting after opening a newline
     " npm install -g eslint babel-eslint eslint-plugin-react
     autocmd FileType javascript let g:syntastic_javascript_checkers = ['eslint']
