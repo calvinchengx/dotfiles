@@ -49,7 +49,7 @@ if g:distro !~ "NixOS"
     Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'scrooloose/syntastic'
-Plugin 'mxw/vim-jsx'
+Plugin 'maxmellon/vim-jsx-pretty'
 "Plugin 'rdnetto/YCM-Generator' " generate .ycm_extra_conf.py
 
 " syntax checking and autocomplete - Haskell
