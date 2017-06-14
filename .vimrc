@@ -125,6 +125,9 @@ Plugin 'tpope/vim-haml'
 " syntax - rainbow parentheses for lisp-y languages
 Plugin 'luochen1990/rainbow'
 
+" Solidity programming language
+Plugin 'tomlion/vim-solidity'
+
 " Hex mode editing
 "Plugin 'vim-scripts/hexman.vim'
 
@@ -358,6 +361,8 @@ source ~/.vimrc_ruby
 source ~/.vimrc_lisp
 source ~/.vimrc_markdown
 source ~/.vimrc_java
+source ~/.vimrc_solidity
+
 
 " Using Marc Weber's VAM, in order to load his nix addon.
 set nocompatible | filetype indent plugin on | syn on
