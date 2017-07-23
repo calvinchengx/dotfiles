@@ -34,11 +34,16 @@ export LC_ALL="en_US.UTF-8"
 export EDITOR=vim
 
 # python virtualenv and virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/work
-if [[  $(typeCheck "virtualenvwrapper.sh") == "command" ]]; then
-    source `type -p virtualenvwrapper.sh`
-fi
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/work
+#if [[  $(typeCheck "virtualenvwrapper.sh") == "command" ]]; then
+    #source `type -p virtualenvwrapper.sh`
+#fi
+#
+# Using pyenv-virtualenvwrapper
+eval "$(pyenv init -)"
+pyenv rehash
+pyenv virtualenvwrapper
 
 # ruby rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
