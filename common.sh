@@ -33,14 +33,9 @@ export LC_ALL="en_US.UTF-8"
 # Default editor
 export EDITOR=vim
 
-# python virtualenv and virtualenvwrapper
-#export WORKON_HOME=$HOME/.virtualenvs
-#export PROJECT_HOME=$HOME/work
-#if [[  $(typeCheck "virtualenvwrapper.sh") == "command" ]]; then
-    #source `type -p virtualenvwrapper.sh`
-#fi
-#
-# Using pyenv-virtualenvwrapper
+# python virtualenv and virtualenvwrapper using pyenv-virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/work
 eval "$(pyenv init -)"
 pyenv rehash
 pyenv virtualenvwrapper
