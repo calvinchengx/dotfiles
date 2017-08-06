@@ -88,6 +88,12 @@ Plugin 'stephpy/vim-yaml'
 " syntax - vim-jade
 Plugin 'digitaltoad/vim-jade'
 
+" syntax - elixir
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'slashmili/alchemist.vim'
+Plugin 'c-brenn/phoenix.vim'
+Plugin 'tpope/vim-projectionist'
+
 " syntax - Elm-Lang
 "Plugin 'lambdatoast/elm.vim'
 
