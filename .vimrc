@@ -43,6 +43,9 @@ Plugin 'xolox/vim-session'  " vim-session is mksession on steroids
 " code navigation
 Plugin 'majutsushi/tagbar'
 
+" nginx
+Plugin 'evanmiller/nginx-vim-syntax'
+
 " syntax checking and autocomplete
 " not loading YouCompleteMe from here if we are using NixOS
 if g:distro !~ "NixOS"

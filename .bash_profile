@@ -25,6 +25,10 @@ function prompt {
 
 prompt
 
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 # Android Studio
 export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk
 
