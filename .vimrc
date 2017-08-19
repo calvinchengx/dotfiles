@@ -372,7 +372,7 @@ source ~/.vimrc_markdown
 source ~/.vimrc_java
 source ~/.vimrc_solidity
 source ~/.vimrc_scss
-
+source ~/.vimrc_conf
 
 " Using Marc Weber's VAM, in order to load his nix addon.
 set nocompatible | filetype indent plugin on | syn on
