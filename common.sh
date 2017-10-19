@@ -72,8 +72,8 @@ alias valg='ln -sf $HOME/objc.supp `pwd`/objc.supp && /usr/local/bin/valgrind'
 
 # git crawl aliases
 # https://github.com/magnusstahre/git-stuff
-alias next='git crawl master'
-alias previous='git co HEAD^1'
+alias nxt='git crawl master'
+alias prev='git co HEAD^1'
 
 # A symlink function that does exception handling with friendly messages
 symlink() {
