@@ -220,6 +220,7 @@ dockerkillall() {
 
 # suppress python-config warnings when running brew doctor
 alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
+eval "$(pyenv init -)"
 
 # Stop all containers.
 alias dockercleans='printf "\n>>> Stopping all containers\n\n" && docker stop $(docker ps -a -q)'

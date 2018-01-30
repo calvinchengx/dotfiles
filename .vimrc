@@ -44,7 +44,7 @@ Plugin 'xolox/vim-session'  " vim-session is mksession on steroids
 Plugin 'majutsushi/tagbar'
 
 " nginx
-Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'chr4/nginx.vim'
 
 " syntax checking and autocomplete
 " not loading YouCompleteMe from here if we are using NixOS
@@ -181,7 +181,7 @@ call vundle#end()
 " General vimrc settings
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme elflord
 filetype on
 filetype plugin indent on
 set completeopt+=preview                " enable function preview with YouCompleteMe
