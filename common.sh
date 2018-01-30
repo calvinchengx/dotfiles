@@ -33,13 +33,6 @@ export LC_ALL="en_US.UTF-8"
 # Default editor
 export EDITOR=vim
 
-# python virtualenv and virtualenvwrapper using pyenv-virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/work
-eval "$(pyenv init -)"
-pyenv rehash
-pyenv virtualenvwrapper
-
 # ruby rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
