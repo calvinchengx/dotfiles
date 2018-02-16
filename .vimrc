@@ -181,7 +181,7 @@ call vundle#end()
 " General vimrc settings
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme elflord
 filetype on
 filetype plugin indent on
 set completeopt+=preview                " enable function preview with YouCompleteMe
