@@ -44,7 +44,7 @@ Plugin 'xolox/vim-session'  " vim-session is mksession on steroids
 Plugin 'majutsushi/tagbar'
 
 " nginx
-Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'chr4/nginx.vim'
 
 " syntax checking and autocomplete
 " not loading YouCompleteMe from here if we are using NixOS
@@ -372,7 +372,7 @@ source ~/.vimrc_markdown
 source ~/.vimrc_java
 source ~/.vimrc_solidity
 source ~/.vimrc_scss
-
+source ~/.vimrc_conf
 
 " Using Marc Weber's VAM, in order to load his nix addon.
 set nocompatible | filetype indent plugin on | syn on

@@ -43,6 +43,7 @@ symlink ".vimrc_markdown"
 symlink ".vimrc_java"
 symlink ".vimrc_solidity"
 symlink ".vimrc_scss"
+symlink ".vimrc_conf"
 
 mkdir -p $HOME/.vim/bundle
 [[ ! -d "$HOME/.vim/bundle/vundle" ]] && git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/vundle

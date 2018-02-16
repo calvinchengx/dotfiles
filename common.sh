@@ -33,13 +33,6 @@ export LC_ALL="en_US.UTF-8"
 # Default editor
 export EDITOR=vim
 
-# python virtualenv and virtualenvwrapper using pyenv-virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/work
-eval "$(pyenv init -)"
-pyenv rehash
-pyenv virtualenvwrapper
-
 # ruby rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
@@ -72,8 +65,8 @@ alias valg='ln -sf $HOME/objc.supp `pwd`/objc.supp && /usr/local/bin/valgrind'
 
 # git crawl aliases
 # https://github.com/magnusstahre/git-stuff
-alias next='git crawl master'
-alias previous='git co HEAD^1'
+alias nxt='git crawl master'
+alias prev='git co HEAD^1'
 
 # A symlink function that does exception handling with friendly messages
 symlink() {

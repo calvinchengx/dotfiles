@@ -135,10 +135,10 @@ function search_and_replace() {
 export PATH="/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:$PATH";
 
 # node nvm
-export NVM_DIR=~/.nvm
-if [[ "$(getDistro)" == "Darwin" ]]; then
-    source $(brew --prefix nvm)/nvm.sh
-fi
+#export NVM_DIR=~/.nvm
+#if [[ "$(getDistro)" == "Darwin" ]]; then
+    #source $(brew --prefix nvm)/nvm.sh
+#fi
 
 # fastlane
 if [[ "$(getDistro)" == "Darwin" ]]; then
@@ -218,6 +218,10 @@ dockerkillall() {
     docker kill `echo $KILL_LIST`
 }
 
+# suppress python-config warnings when running brew doctor
+alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
+eval "$(pyenv init -)"
+
 # Stop all containers.
 alias dockercleans='printf "\n>>> Stopping all containers\n\n" && docker stop $(docker ps -a -q)'
 
@@ -227,3 +231,18 @@ alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm 
 alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
 # Delete all stopped containers and untagged images.
 alias dockerclean='dockercleanc || true && dockercleani'
+
+function frameworkpython {
+    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        PYTHONHOME=$VIRTUAL_ENV /usr/local/bin/python3 "$@"
+    else
+        /usr/local/bin/python3 "$@"
+    fi
+}
+
+# python virtualenv and virtualenvwrapper using pyenv-virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/work
+eval "$(pyenv init -)"
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+

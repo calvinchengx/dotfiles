@@ -1,0 +1,15 @@
+augroup conf
+    autocmd!
+
+    let s:path = expand("%:p:h")  " absolute path"
+    let s:list = split(s:path, "/")
+    for s in s:list
+        if s == "nginx"
+            let extension = expand('%:e')
+            if extension == "conf"
+                autocmd BufRead,BufNewFile *.conf set filetype=nginx
+                break
+            endif
+        endif
+    endfor
+augroup END
