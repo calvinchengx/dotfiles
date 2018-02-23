@@ -135,10 +135,10 @@ function search_and_replace() {
 export PATH="/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:$PATH";
 
 # node nvm
-#export NVM_DIR=~/.nvm
-#if [[ "$(getDistro)" == "Darwin" ]]; then
-    #source $(brew --prefix nvm)/nvm.sh
-#fi
+export NVM_DIR=~/.nvm
+if [[ "$(getDistro)" == "Darwin" ]]; then
+    source $(brew --prefix nvm)/nvm.sh
+fi
 
 # fastlane
 if [[ "$(getDistro)" == "Darwin" ]]; then
@@ -246,3 +246,5 @@ export PROJECT_HOME=$HOME/work
 eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+# pin go version for different projects
+eval "$(goenv init -)"
