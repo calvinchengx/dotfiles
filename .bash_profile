@@ -64,3 +64,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # added by Anaconda2 4.3.0 installer
 export PATH="/Users/calvin/anaconda2/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+pyenv virtualenvwrapper
