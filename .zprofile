@@ -134,12 +134,6 @@ function search_and_replace() {
 # defaults
 export PATH="/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:$PATH";
 
-# node nvm
-export NVM_DIR=~/.nvm
-if [[ "$(getDistro)" == "Darwin" ]]; then
-    source $(brew --prefix nvm)/nvm.sh
-fi
-
 # fastlane
 if [[ "$(getDistro)" == "Darwin" ]]; then
     export PATH=$HOME/.fastlane/bin:$PATH
@@ -220,7 +214,6 @@ dockerkillall() {
 
 # suppress python-config warnings when running brew doctor
 alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
-eval "$(pyenv init -)"
 
 # Stop all containers.
 alias dockercleans='printf "\n>>> Stopping all containers\n\n" && docker stop $(docker ps -a -q)'
@@ -245,6 +238,17 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/work
 eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 # pin go version for different projects
 eval "$(goenv init -)"
+
+# node nvm
+export NVM_DIR=~/.nvm
+if [[ "$(getDistro)" == "Darwin" ]]; then
+    source $(brew --prefix nvm)/nvm.sh
+fi
+
+if [[ ! -z "$VIRTUAL_ENV" ]]; then
+    nvm use --delete-prefix v8.9.4
+fi
