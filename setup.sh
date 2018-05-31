@@ -111,3 +111,12 @@ if [[ $DISTRO == "Darwin" ]]; then
     ln -s $etc/docker-machine.zsh-completion /usr/local/share/zsh/site-functions/_docker-machine
     ln -s $etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
 fi
+
+# pyenv
+if [[ $DISTRO == "Darwin" ]]; then
+    brew install pyenv
+    git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+    git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper
+    pyenv install 2.7.14
+    pyenv global 2.7.14
+fi
