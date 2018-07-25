@@ -267,7 +267,7 @@ let NERDTreeDirArrows=0
 set statusline=%{fugitive#statusline()}\ m%F%r%h%w\ %y\ [line:%04l\ col:%04v]\ [%p%%]\ [lines:%L]
 
 " Plugin 'shumphrey/fugitive-gitlab'
-let g:fugitive_gitlab_domains=["http://gitlab.calvinx.com","http://gitlab.algoaccess.com"]
+let g:fugitive_gitlab_domains=["http://gitlab.calvinx.com"]
 
 " Plugin 'majutsushi/tagbar'
 nmap <leader>= :TagbarToggle<CR>

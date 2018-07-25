@@ -68,8 +68,8 @@ export NIX_PATH=nixpkgs=/etc/nixos/nixpkgs:nixos-config=/etc/nixos/configuration
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # added by Anaconda2 4.3.0 installer
-export PATH="/Users/calvin/anaconda2/bin:$PATH"
+export PATH="$HOME/anaconda2/bin:$PATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/calvin/.sdkman"
-[[ -s "/Users/calvin/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/calvin/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

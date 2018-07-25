@@ -7,7 +7,7 @@ setopt interactivecomments
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-#zstyle :compinstall filename '/Users/calvin/.zshrc'
+#zstyle :compinstall filename '$HOME/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -18,7 +18,7 @@ function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 
 source ~/.zprofile
 
-[[ -s "/Users/calvin/.gvm/scripts/gvm" ]] && source "/Users/calvin/.gvm/scripts/gvm"
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
