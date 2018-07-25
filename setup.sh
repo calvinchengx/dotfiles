@@ -72,8 +72,6 @@ rm $HOME/.zshrc
 symlink ".zshrc"
 
 # change shell - switch to using zsh
-echo "####################"
-echo $DISTRIB_ID
 if [[ $DISTRIB_ID == "Ubuntu" ]]; then
     yes | sudo apt install zsh
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
@@ -103,12 +101,11 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-LAST_LINE=`nvm ls-remote --lts | tail -1 | sed 's/ \+/ /g'`
-export LAST_LINE_ARRAY=(`echo $LAST_LINE`)
-export NODE_LATEST=${LAST_LINE_ARRAY[1]}
-export NODE_LATEST=${NODE_LATEST:1}
-echo $NODE_LATEST
-nvm install --lts $NODE_LATEST
+
+export NODE_LATEST_COLORS=`nvm ls-remote --lts | grep Latest | tail -1 | sed 's/ \+/ /g' | sed 's/-> //g' | sed 's/([^()]*)//g' | sed 's/v//g'`
+export NODE_LATEST=`echo $NODE_LATEST_COLORS | sed -r 's/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g' | sed 's/ //g'`
+
+nvm install $NODE_LATEST
 nvm alias default $NODE_LATEST
 
 #npm install -g eslint babel-eslint eslint-plugin-react
@@ -166,8 +163,8 @@ source ~/.bash_profile
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper
 export PYTHON_CONFIGURE_OPTS="--enable-shared"
-pyenv install -s 2.7.14
-pyenv global 2.7.14
+pyenv install -s 2.7.15
+pyenv global 2.7.15
 
 # sdkman
 if [[ $DISTRIB_ID == "Ubuntu" ]]; then
@@ -175,6 +172,9 @@ if [[ $DISTRIB_ID == "Ubuntu" ]]; then
 fi
 unset SDKMAN_DIR
 curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk version
+yes | sdk install java 8.0.181-oracle
 
 # YouCompleteMe
 if [[ $DISTRIB_ID == "Ubuntu" ]]; then
