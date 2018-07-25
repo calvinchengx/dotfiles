@@ -192,7 +192,8 @@ if [[ "$(getDistro)" == "Darwin" ]]; then
     source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
     export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 else
-    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # google cloud sdk on Darwin
@@ -213,7 +214,9 @@ dockerkillall() {
 }
 
 # suppress python-config warnings when running brew doctor
-alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
+if [[ "$(getDistro)" == "Darwin" ]]; then
+    alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
+fi
 
 # Stop all containers.
 alias dockercleans='printf "\n>>> Stopping all containers\n\n" && docker stop $(docker ps -a -q)'
@@ -236,11 +239,15 @@ function frameworkpython {
 # python virtualenv and virtualenvwrapper using pyenv-virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/work
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 # pin go version for different projects
+export GOENV_ROOT=$HOME/.goenv
+export PATH=$GOENV_ROOT/bin:$PATH
 eval "$(goenv init -)"
 
 # node nvm

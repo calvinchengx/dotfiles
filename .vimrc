@@ -380,5 +380,5 @@ source ~/.vimrc_conf
 " Using Marc Weber's VAM, in order to load his nix addon.
 set nocompatible | filetype indent plugin on | syn on
 set runtimepath+=~/.vim/bundle/vim-addon-manager
-call vam#ActivateAddons([])
-VAMActivate vim-addon-nix
+silent! call vam#ActivateAddons([])
+silent! VAMActivate vim-addon-nix

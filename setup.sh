@@ -16,15 +16,13 @@ symlink "distro.sh"
 # Are we on Darwin and is vim not already installed?
 if [[ $DISTRO == "Darwin" ]] && [[ -z "`which vim`" ]]; then
     echo "Installing vim"
-    sudo port install vim +huge +python27 +gtk2 +lua
+    brew install autoenv
+    brew install nvm
+    brew install antigen
+    brew cask install google-cloud-sdk
+    git clone git@gitlab.calvinx.com:calvin/secrets.git ../
+    cp -f ../secrets/.secrets $HOME/.secrets
 fi
-
-brew install autoenv
-brew install nvm
-brew install antigen
-brew cask install google-cloud-sdk
-git clone git@gitlab.calvinx.com:calvin/secrets.git ../
-cp -f ../secrets/.secrets $HOME/.secrets
 
 symlink ".vimrc"
 symlink ".vimrc_basic"
@@ -49,6 +47,10 @@ mkdir -p $HOME/.vim/bundle
 [[ ! -d "$HOME/.vim/bundle/vundle" ]] && git clone https://github.com/gmarik/Vundle.vim.git $HOME/.vim/bundle/vundle
 [[ $INSTALL_TYPE == "full" ]] && vim -c VundleUpdate -c quitall
 
+# vim plugins
+vim +VimEnter +VundleInstall +qall
+vim +VimEnter +VundleInstall +qall
+
 # tmux
 symlink ".tmux.conf"
 mkdir -p $HOME/.tmux/plugins
@@ -61,6 +63,18 @@ symlink ".bash_profile"
 
 # .zprofile
 symlink ".zprofile"
+symlink ".zshrc"
+
+# change shell - switch to using zsh
+echo "####################"
+echo $DISTRIB_ID
+if [[ $DISTRIB_ID == "Ubuntu" ]]; then
+    yes | sudo apt install zsh
+    wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+    chsh -s `which zsh`
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+fi
 
 # git
 symlink ".gitconfig"
@@ -96,12 +110,10 @@ mkdir -p $HOME/.config/htop
 symlink ".config/htop/htoprc"
 
 # YouCompleteMe
-if [[ $DISTRO -ne "NixOS" ]]; then
-    YCM_COMPILED=$(find $HOME/.vim/bundle/YouCompleteMe/ -name "ycm_client_support.*" | grep -o "ycm_client_support")
-    if [[ -z $YCM_COMPILED ]]; then
-        bash $HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer --omnisharp-completer --gocode-completer --tern-completer --racer-completer
-        symlink ".ycm_extra_conf.py"
-    fi
+YCM_COMPILED=$(find $HOME/.vim/bundle/YouCompleteMe/ -name "ycm_client_support.*" | grep -o "ycm_client_support")
+if [[ -z $YCM_COMPILED ]]; then
+    bash $HOME/.vim/bundle/YouCompleteMe/install.sh --clang-completer --omnisharp-completer --gocode-completer --tern-completer --racer-completer
+    symlink ".ycm_extra_conf.py"
 fi
 
 # docker
@@ -115,8 +127,23 @@ fi
 # pyenv
 if [[ $DISTRO == "Darwin" ]]; then
     brew install pyenv
-    git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-    git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper
-    pyenv install 2.7.14
-    pyenv global 2.7.14
+else
+    yes | sudo apt-get install git python-pip make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
+    yes | sudo pip install virtualenvwrapper
 fi
+
+# upgrade pip if necessary
+sudo pip install --upgrade pip
+
+git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+source ~/.bash_profile
+git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper
+pyenv install 2.7.14
+pyenv global 2.7.14
+
+# sdkman
+if [[ $DISTRIB_ID == "Ubuntu" ]]; then
+    yes | sudo apt install zip unzip
+fi
+curl -s "https://get.sdkman.io" | bash

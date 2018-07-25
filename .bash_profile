@@ -25,9 +25,11 @@ function prompt {
 
 prompt
 
+export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+pyenv virtualenvwrapper
 
 # Android Studio
 export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk
@@ -67,10 +69,6 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # added by Anaconda2 4.3.0 installer
 export PATH="/Users/calvin/anaconda2/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-pyenv virtualenvwrapper
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/calvin/.sdkman"

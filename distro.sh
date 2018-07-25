@@ -5,7 +5,8 @@ getDistro() {
         local DISTRO="Darwin";
     elif [[ "`uname`" == "Linux" ]]; then
         local DISTRO="Linux"
-        [[ "`cat /proc/version`" == *"NixOS"* ]] && local DISTRO="NixOS"
+        source /etc/*release
+        echo $DISTRIB_ID
     else
         local DISTRO=""
     fi
