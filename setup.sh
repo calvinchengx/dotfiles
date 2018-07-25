@@ -86,24 +86,39 @@ fi
 symlink ".gitconfig"
 symlink ".gitignore_global"
 
-# goenv
+# goenv / golang
 git clone https://github.com/syndbg/goenv.git ~/.goenv
+export GOENV_ROOT=$HOME/.goenv
+export PATH=$GOENV_ROOT/bin:$PATH
+eval "$(goenv init -)"
+export GO_LATEST=`goenv install -list | tail -1 | sed 's/ //g'`
+goenv install -s $GO_LATEST
+goenv global $GO_LATEST
 
-# nvm
-if [[ $(isFunction "nvm") -ne "function" ]]; then
-    curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
-    npm install -g eslint babel-eslint eslint-plugin-react
-else
-    echo "nvm already installed"
+# nvm / node
+if [[ $DISTRIB_ID == "Ubuntu" ]]; then
+    mkdir -p $HOME/.nvm
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+LAST_LINE=`nvm ls-remote --lts | tail -1 | sed 's/ \+/ /g'`
+export LAST_LINE_ARRAY=(`echo $LAST_LINE`)
+export NODE_LATEST=${LAST_LINE_ARRAY[1]}
+export NODE_LATEST=${NODE_LATEST:1}
+echo $NODE_LATEST
+nvm install --lts $NODE_LATEST
+nvm alias default $NODE_LATEST
+
+#npm install -g eslint babel-eslint eslint-plugin-react
 
 # javascript
 symlink ".jshintrc"
 symlink ".eslintrc"
 
-# nix
-[[ ! -d $HOME/.nixpkgs ]] && mkdir -p $HOME/.nixpkgs
-[[ ! -L $HOME/.nixpkgs/config.nix ]] && ln -s "`pwd`/.nixpkgs/config.nix" $HOME/.nixpkgs/config.nix
+# rust
+curl -sSf https://static.rust-lang.org/rustup.sh | sh
 
 # autoenv
 if [[ ! -e "$HOME/.autoenv" ]]; then
