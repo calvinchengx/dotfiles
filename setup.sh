@@ -8,6 +8,7 @@ myDir=$(dirname "$0")
 source $myDir/distro.sh
 DISTRO=$(getDistro)
 source $myDir/common.sh
+source /etc/*release
 
 symlink "common.sh"
 symlink "distro.sh"
@@ -124,6 +125,15 @@ if [[ $DISTRO == "Darwin" ]]; then
     ln -s $etc/docker-compose.zsh-completion /usr/local/share/zsh/site-functions/_docker-compose
 fi
 
+if [[ $DISTRIB_ID == "Ubuntu" ]]; then
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo apt-key fingerprint 0EBFCD88
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    sudo apt update
+    yes | sudo apt install docker-ce
+fi
+
 # pyenv
 if [[ $DISTRO == "Darwin" ]]; then
     brew install pyenv
@@ -147,3 +157,8 @@ if [[ $DISTRIB_ID == "Ubuntu" ]]; then
     yes | sudo apt install zip unzip
 fi
 curl -s "https://get.sdkman.io" | bash
+
+# Ubuntu auto updates
+if [[ $DISTRIB_ID == "Ubuntu" ]]; then
+    yes | sudo apt install unattended-upgrades
+fi
