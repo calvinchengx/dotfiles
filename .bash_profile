@@ -51,8 +51,11 @@ if [[ $DISTRO == "Darwin" ]]; then
     #export C_INCLUDE_PATH="/usr/include:/usr/local/include:/opt/local/include"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# node nvm
+export NVM_DIR=~/.nvm
+if [[ "$(getDistro)" == "Darwin" ]]; then
+    . "/usr/local/opt/nvm/nvm.sh"
+fi
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 source $HOME/.autoenv/activate.sh
@@ -68,3 +71,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 pyenv virtualenvwrapper
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/calvin/.sdkman"
+[[ -s "/Users/calvin/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/calvin/.sdkman/bin/sdkman-init.sh"

@@ -26,6 +26,7 @@
     tool = kdiff3
 [push]
     default = simple
+	followTags = true
 [diff]
     tool = kdiff3
 [filter "hawser"]

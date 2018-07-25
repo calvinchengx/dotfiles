@@ -307,6 +307,7 @@ let g:tagbar_type_haskell = {
 endif
 
 " Plugin 'Valloric/YouCompleteMe'
+let g:ycm_python_binary_path = 'python'
 let g:ycm_server_python_interpreter = 'python'
 let g:ycm_semantic_triggers =  {
   \   'c' : ['->', '.'],
@@ -355,6 +356,8 @@ let g:tmuxify_run = {
 
 " Applies to all filetypes
 autocmd BufWritePre *.* :keepjumps :%s/\s+$//e
+
+silent! py3 pass
 
 " Language settings
 source ~/.vimrc_go

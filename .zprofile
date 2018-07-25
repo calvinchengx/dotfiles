@@ -246,9 +246,8 @@ eval "$(goenv init -)"
 # node nvm
 export NVM_DIR=~/.nvm
 if [[ "$(getDistro)" == "Darwin" ]]; then
-    source $(brew --prefix nvm)/nvm.sh
+    . "/usr/local/opt/nvm/nvm.sh"
 fi
 
-if [[ ! -z "$VIRTUAL_ENV" ]]; then
-    nvm use --delete-prefix v8.9.4
-fi
+# Java sdkman
+source "$HOME/.sdkman/bin/sdkman-init.sh"
