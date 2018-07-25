@@ -145,7 +145,7 @@ use_haskell() {
             # nox cabal-install (for example)
             # Anyway:
             # nix-env -iA nixpkgs.haskellPackages.cabalInstall_1_20_0_6
-            HS_BIN="/Users/calvin/.nix-profile/bin"
+            HS_BIN="$HOMEn/.nix-profile/bin"
             CABAL_BIN="$HOME/.cabal/bin" # Must be in .cabal/config.nix
             # We need these NIX_* flags so cabal can find C header files
             NIX_CFLAGS_COMPILE="-idirafter /usr/include"

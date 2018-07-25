@@ -68,6 +68,7 @@ symlink ".bash_profile"
 
 # .zprofile
 symlink ".zprofile"
+rm $HOME/.zshrc
 symlink ".zshrc"
 
 # change shell - switch to using zsh
