@@ -186,6 +186,12 @@ if [[ -z $YCM_COMPILED ]]; then
     symlink ".ycm_extra_conf.py"
 fi
 
+# certbot
+if [[ $DISTRIB_ID == "Ubuntu" ]]; then
+    yes | sudo add-apt-repository ppa:certbot/certbot
+    sudo apt update
+    yes | sudo apt install python-certbot-nginx
+fi
 
 # Ubuntu auto updates
 if [[ $DISTRIB_ID == "Ubuntu" ]]; then
