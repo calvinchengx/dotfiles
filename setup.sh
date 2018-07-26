@@ -18,7 +18,6 @@ symlink "distro.sh"
 if [[ $DISTRO == "Darwin" ]] && [[ -z "`which vim`" ]]; then
     echo "Installing vim"
     brew install autoenv
-    brew install nvm
     brew install antigen
     brew cask install google-cloud-sdk
     git clone git@gitlab.calvinx.com:calvin/secrets.git ../
@@ -68,17 +67,21 @@ symlink ".bash_profile"
 
 # .zprofile
 symlink ".zprofile"
-rm $HOME/.zshrc
-symlink ".zshrc"
 
 # change shell - switch to using zsh
 if [[ $DISTRIB_ID == "Ubuntu" ]]; then
     yes | sudo apt install zsh
-    wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-    chsh -s `which zsh`
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 fi
+if [[ $DISTRO == "Darwin" ]]; then
+    brew install zsh
+fi
+
+rm $HOME/.zshrc
+symlink ".zshrc"
+chsh -s `which zsh`
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 # git
 symlink ".gitconfig"
@@ -94,10 +97,8 @@ goenv install -s $GO_LATEST
 goenv global $GO_LATEST
 
 # nvm / node
-if [[ $DISTRIB_ID == "Ubuntu" ]]; then
-    mkdir -p $HOME/.nvm
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-fi
+mkdir -p $HOME/.nvm
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
