@@ -54,7 +54,7 @@ if [[ $DISTRO == "Darwin" ]]; then
 fi
 
 # node nvm
-export NVM_DIR=~/.nvm
+export NVM_DIR=$HOME/.nvm
 if [[ "$(getDistro)" == "Darwin" ]]; then
     . "/usr/local/opt/nvm/nvm.sh"
 fi

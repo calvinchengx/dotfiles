@@ -236,6 +236,12 @@ function frameworkpython {
     fi
 }
 
+# node nvm
+export NVM_DIR=$HOME/.nvm
+if [[ "$(getDistro)" == "Darwin" ]]; then
+    . "/usr/local/opt/nvm/nvm.sh"
+fi
+
 # python virtualenv and virtualenvwrapper using pyenv-virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/work
@@ -249,12 +255,6 @@ export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export GOENV_ROOT=$HOME/.goenv
 export PATH=$GOENV_ROOT/bin:$PATH
 eval "$(goenv init -)"
-
-# node nvm
-export NVM_DIR=~/.nvm
-if [[ "$(getDistro)" == "Darwin" ]]; then
-    . "/usr/local/opt/nvm/nvm.sh"
-fi
 
 # Java sdkman
 source "$HOME/.sdkman/bin/sdkman-init.sh"
