@@ -261,3 +261,5 @@ eval "$(goenv init -)"
 
 # Java sdkman
 source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PATH="$HOME/.cargo/bin:$PATH"
