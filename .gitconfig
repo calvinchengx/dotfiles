@@ -46,3 +46,5 @@
     followRedirects = true
 [http "https://code.google.com"]
     followRedirects = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
