@@ -251,6 +251,9 @@ eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
+# pipenv
+eval "$(pipenv --completion)"
+
 # pin go version for different projects
 export GOENV_ROOT=$HOME/.goenv
 export PATH=$GOENV_ROOT/bin:$PATH
