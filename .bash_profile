@@ -31,6 +31,9 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 pyenv virtualenvwrapper
 
+# pipenv
+eval "$(pipenv --completion)"
+
 # Android Studio
 export STUDIO_JDK=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk
 
