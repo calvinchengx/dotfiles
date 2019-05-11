@@ -150,7 +150,7 @@ fi
 
 # pyenv
 if [[ $DISTRO == "Darwin" ]]; then
-    brew install pyenv
+    brew install pipenv pyenv
 else
     yes | sudo apt-get install git python-pip make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
     yes | sudo pip install virtualenvwrapper

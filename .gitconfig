@@ -7,6 +7,7 @@
     pl = pull
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     fixup = "!f() { TARGET=$(git rev-parse "$1"); git commit --fixup=$TARGET ${@:2} && EDITOR=true git rebase -i --autostash --autosquash $TARGET^; }; f"
+    ls-subtrees = !"git log | grep git-subtree-dir | gawk '{ print $2 }'"
 [color]
     ui = true
 [user]

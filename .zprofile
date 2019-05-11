@@ -131,6 +131,15 @@ function search_and_replace() {
     fi
 }
 
+# git
+function gitnext() {
+    git checkout HEAD^1
+}
+
+functiom gitprev() {
+    git log --reverse --pretty=%H master | grep -A 1 $(git rev-parse HEAD) | tail -n1 | xargs git checkout
+}
+
 # defaults
 export PATH="/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:$PATH";
 
@@ -214,9 +223,9 @@ dockerkillall() {
 }
 
 # suppress python-config warnings when running brew doctor
-if [[ "$(getDistro)" == "Darwin" ]]; then
-    alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
-fi
+#if [[ "$(getDistro)" == "Darwin" ]]; then
+    #alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"
+#fi
 
 # Stop all containers.
 alias dockercleans='printf "\n>>> Stopping all containers\n\n" && docker stop $(docker ps -a -q)'
@@ -242,16 +251,7 @@ if [[ "$(getDistro)" == "Darwin" ]]; then
     . "/usr/local/opt/nvm/nvm.sh"
 fi
 
-# python virtualenv and virtualenvwrapper using pyenv-virtualenvwrapper
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/work
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
-
-# pipenv
+# python / pipenv
 eval "$(pipenv --completion)"
 
 # pin go version for different projects
@@ -262,4 +262,13 @@ eval "$(goenv init -)"
 # Java sdkman
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# php
+export PATH="/usr/local/opt/php@7.2/bin:$PATH"
+export PATH="/usr/local/opt/php@7.2/sbin:$PATH"
+export LDFLAGS="-L/usr/local/opt/php@7.2/lib"
+export CPPFLAGS="-I/usr/local/opt/php@7.2/include"
+alias php-composer="php /usr/local/bin/composer"
+
