@@ -251,7 +251,8 @@ if [[ "$(getDistro)" == "Darwin" ]]; then
     . "/usr/local/opt/nvm/nvm.sh"
 fi
 
-# python / pipenv
+# python / pyenv / pipenv
+eval "$(pyenv init -)"
 eval "$(pipenv --completion)"
 
 # pin go version for different projects

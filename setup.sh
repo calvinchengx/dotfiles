@@ -148,9 +148,14 @@ if [[ $DISTRIB_ID == "Ubuntu" ]]; then
     yes | sudo apt install docker-ce
 fi
 
-# pyenv
+# pyenv and pipenv
 if [[ $DISTRO == "Darwin" ]]; then
-    brew install pipenv pyenv
+    # use pyenv to manage different python versions
+    brew install readline xz pyenv
+    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install -v 2.7.16
+    CFLAGS="-I$(xcrun --show-sdk-path)/usr/include" pyenv install -v 3.7.3
+    # use pipenv to manage specific project's virtualenv
+    brew install pipenv
 else
     yes | sudo apt-get install git python-pip make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
     yes | sudo pip install virtualenvwrapper
