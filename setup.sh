@@ -149,6 +149,8 @@ if [[ $DISTRIB_ID == "Ubuntu" ]]; then
 fi
 
 # pyenv and pipenv
+curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
 if [[ $DISTRO == "Darwin" ]]; then
     # use pyenv to manage different python versions
     brew install readline xz pyenv
@@ -157,20 +159,9 @@ if [[ $DISTRO == "Darwin" ]]; then
     # use pipenv to manage specific project's virtualenv
     brew install pipenv
 else
-    yes | sudo apt-get install git python-pip make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
+    yes | sudo apt-get install git python3 python3-pip make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev pipenv
     yes | sudo pip install virtualenvwrapper
 fi
-
-# upgrade pip if necessary
-sudo pip install --upgrade pip
-
-git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-source ~/.bash_profile
-git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper
-export PYTHON_CONFIGURE_OPTS="--enable-shared"
-pyenv install -s 2.7.15
-pyenv global 2.7.15
 
 # sdkman
 if [[ $DISTRIB_ID == "Ubuntu" ]]; then
@@ -180,7 +171,7 @@ unset SDKMAN_DIR
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk version
-yes | sdk install java 8.0.181-oracle
+yes | sdk install java 10.0.2-open
 
 # YouCompleteMe
 if [[ $DISTRIB_ID == "Ubuntu" ]]; then

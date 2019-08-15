@@ -252,6 +252,7 @@ if [[ "$(getDistro)" == "Darwin" ]]; then
 fi
 
 # python / pyenv / pipenv
+alias pip=pip3
 eval "$(pyenv init -)"
 eval "$(pipenv --completion)"
 
