@@ -253,6 +253,7 @@ fi
 
 # python / pyenv / pipenv
 alias pip=pip3
+export PATH="/root/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pipenv --completion)"
 
