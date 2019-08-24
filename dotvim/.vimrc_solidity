@@ -1,0 +1,3 @@
+augroup SOLIDITY
+    " Any customization for sol files here
+augroup END

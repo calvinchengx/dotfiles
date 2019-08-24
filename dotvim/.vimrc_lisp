@@ -1,0 +1,6 @@
+augroup LISP
+    autocmd!
+    autocmd BufNewFile,BufRead *.lisp set filetype=lisp
+    autocmd FileType let g:rainbow_active = 1
+    autocmd FileType let g:slimv_swank_cmd ='! xterm -e sbcl --load ~/utils/start-swank.lisp &'
+augroup END

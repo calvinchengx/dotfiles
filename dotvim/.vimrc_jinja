@@ -1,0 +1,4 @@
+augroup JINJA
+    autocmd!
+    autocmd BufNewFile,BufRead *.j2 set filetype=jinja
+augroup END

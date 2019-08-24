@@ -1,0 +1,5 @@
+augroup SCSS
+    autocmd!
+    autocmd BufNewFile,BufRead *.scss,*.sass set filetype=scss
+    autocmd BufNewFile,BufRead *.scss,*.sass setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+augroup END

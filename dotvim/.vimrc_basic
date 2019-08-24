@@ -1,0 +1,32 @@
+set nocompatible
+filetype off " Disable filetype functionality to use vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+
+" Vundle plugins
+Plugin 'gmarik/vundle'
+
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'rking/ag.vim'
+
+" Vundle management ends here. Turn our filetype functionality back on
+call vundle#end()
+
+" General vimrc settings
+syntax enable
+set background=dark
+colorscheme solarized
+filetype on
+filetype plugin indent on
+set completeopt+=preview                " enable function preview with YouCompleteMe
+set backspace=indent,eol,start          " allow backspace in insert mode.
+set number
+let mapleader=","
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+set laststatus=2
+set noerrorbells visualbell t_vb=
+map <C-s> :w<CR>
+imap <C-s> <ESC> :w<CR>

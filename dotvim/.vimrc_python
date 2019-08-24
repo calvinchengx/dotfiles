@@ -1,0 +1,9 @@
+augroup PYTHON
+    autocmd!
+    autocmd BufNewFile,BufRead *.py set filetype=python
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
+    autocmd BufNewFile,BufRead *.py setlocal shiftwidth=4
+    autocmd BufNewFile,BufRead *.py setlocal tabstop=4
+    autocmd BufNewFile,BufRead *.py setlocal softtabstop=4
+    autocmd BufNewFile,BufRead *.py setlocal expandtab
+augroup END

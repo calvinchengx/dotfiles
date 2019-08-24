@@ -1,0 +1,22 @@
+augroup HASKELL
+    autocmd!
+    autocmd BufNewFile,BufRead *.hs set filetype=haskell
+    autocmd BufNewFile,BufRead *.hs setlocal shiftwidth=4
+    autocmd BufNewFile,BufRead *.hs setlocal tabstop=8
+    autocmd BufNewFile,BufRead *.hs setlocal softtabstop=4
+    autocmd BufNewFile,BufRead *.hs setlocal expandtab
+    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+    autocmd FileType haskell let g:necoghc_enable_detailed_browse=1
+    " Set compiler (haskellmode-vim)
+    "autocmd BufEnter *.hs compiler ghc " <-- This line screws up :grep and :Ag
+    " Active keys to control syntastic in haskell filetype
+    autocmd FileType haskell map <silent> <Leader>e :Errors<CR>
+    autocmd FileType haskell map <Leader>s :SyntasticToggleMode<CR>
+    " Plugin 'bitc/vim-hdevtools'
+    autocmd FileType haskell nnoremap <buffer> <C-h> :HdevtoolsType<CR>
+    autocmd FileType haskell nnoremap <buffer> <silent> <C-j> :HdevtoolsClear<CR>
+    autocmd FileType haskell nnoremap <buffer> <silent> <C-k> :HdevtoolsInfo<CR>
+    " Plugin 'lukerandall/haskellmode-vim' and ghc-mod integration
+    "autocmd FileType haskell map <silent> tu :call GHC_BrowseAll()<CR> " ghc-mod reload
+    "autocmd FileType haskell map <silent> tw :call GHC_ShowType(1)<CR> " type lookup
+augroup END
