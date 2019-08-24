@@ -35,5 +35,7 @@ func Setup(c *cli.Context) error {
 
 	packageManagers(goos)
 
+	vim(goos, homedir)
+
 	return nil
 }
