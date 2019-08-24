@@ -41,6 +41,7 @@ func Setup(c *cli.Context) error {
 	packageManagers(goos)
 
 	vim(goos, homedir)
+	vimPlugDependencies(homedir)
 
 	return nil
 }

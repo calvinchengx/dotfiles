@@ -178,6 +178,14 @@ Plugin 'vim-scripts/TeTrIs.vim'  " start game with <Leader>te
 " Vundle management ends here. Turn our filetype functionality back on
 call vundle#end()
 
+call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/vim-easy-align'
+
+" Initialize plugin system
+call plug#end()
+
+
 " General vimrc settings
 syntax enable
 set background=dark

@@ -71,3 +71,15 @@ func vimrcFiles(homedir string) {
 		os.Symlink(source, target)
 	}
 }
+
+func vimPlugDependencies(homedir string) error {
+	fmt.Printf("Install vim's plug dependencies\n")
+	filePath := path.Join(homedir, dotfilesDir, "scripts", "vimplug_install.sh")
+	cmd := exec.Command("bash", filePath)
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		log.Fatalf("cmd.Run() failed with %s\n", err)
+	}
+	fmt.Printf("combined out:\n%s\n", string(out))
+	return nil
+}
