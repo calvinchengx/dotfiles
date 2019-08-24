@@ -20,6 +20,11 @@ func vim(goos string, homedir string) {
 		vimrcFiles(homedir)
 	case "linux":
 	default:
+		install := checkExists("vim") == false
+		if install {
+			vimInstallWith("apt")
+		}
+		vimrcFiles(homedir)
 	}
 }
 
@@ -38,9 +43,8 @@ func vimrcFiles(homedir string) {
 	fmt.Printf("Symlink vimrc files\n")
 	var files []string
 
-	root, _ := os.Getwd()
 	dotvimDirname := "dotvim"
-	dotvimDir := path.Join(root, dotvimDirname)
+	dotvimDir := path.Join(homedir, dotfilesDir, dotvimDirname)
 	err := filepath.Walk(dotvimDir, func(path string, info os.FileInfo, err error) error {
 		// exclude the directory itself
 		if filepath.Base(path) != dotvimDirname {
@@ -56,6 +60,14 @@ func vimrcFiles(homedir string) {
 	for _, source := range files {
 		target := path.Join(homedir, filepath.Base(source))
 		fmt.Printf("%s symlinked to %s\n", target, source)
+		if _, err := os.Lstat(target); err == nil {
+			if err := os.Remove(target); err != nil {
+				fmt.Printf("failed to unlink: %+v", err)
+			}
+		} else if os.IsNotExist(err) {
+			fmt.Printf("failed to check symlink: %+v", err)
+		}
+		// execute symlink
 		os.Symlink(source, target)
 	}
 }

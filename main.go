@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/calvinchengx/dotfiles/commands"
+
 	"github.com/urfave/cli"
 )
 

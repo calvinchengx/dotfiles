@@ -33,6 +33,11 @@ func Setup(c *cli.Context) error {
 	fmt.Println("Current OS user is:", username)
 	fmt.Println("Current OS user's home directory is:", homedir)
 
+	dataDirectory(homedir, []string{"dotvim", "scripts"})
+
+	boxFiles(homedir, "dotvim", 0644)
+	boxFiles(homedir, "scripts", 0755)
+
 	packageManagers(goos)
 
 	vim(goos, homedir)
