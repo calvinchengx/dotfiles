@@ -1,13 +1,15 @@
-package commands
+package fileops
 
 import (
 	"fmt"
 	"log"
 	"os/exec"
+	"path"
 )
 
-func homeBrewUpgrade() error {
-	cmd := exec.Command("bash", "scripts/homebrew_upgrade.sh")
+func (p *Profile) homeBrewUpgrade() error {
+	pathString := path.Join(p.HomeDir, p.DotfilesDir, "scripts", "homebrew_upgrade.sh")
+	cmd := exec.Command("bash", pathString)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		log.Fatalf("cmd.Run() failed with %s\n", err)
@@ -16,9 +18,10 @@ func homeBrewUpgrade() error {
 	return nil
 }
 
-func homeBrewInstall() error {
+func (p *Profile) homeBrewInstall() error {
 	fmt.Printf("Installing homebrew\n")
-	cmd := exec.Command("bash", "scripts/homebrew.sh")
+	pathString := path.Join(p.HomeDir, p.DotfilesDir, "scripts", "homebrew.sh")
+	cmd := exec.Command("bash", pathString)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Printf(string(out))

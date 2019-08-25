@@ -3,6 +3,7 @@ package commands
 import (
 	"github.com/urfave/cli"
 
+	"github.com/calvinchengx/dotfiles/depsvim"
 	"github.com/calvinchengx/dotfiles/fileops"
 )
 
@@ -30,20 +31,25 @@ var Flags = []cli.Flag{
 // Setup is the function that executes the installation of dotfiles in our current OS
 func Setup(c *cli.Context) error {
 
+	// initialise OS profile
 	p := fileops.Init(verbose, full)
 
+	// data directory
 	p.DataDirectory([]string{"scripts", "dotvim", "dotzsh"})
 	p.BoxFiles("scripts", 0755)
 	p.BoxFiles("dotvim", 0644)
 	p.BoxFiles("dotzsh", 0644)
 
-	packageManagers(p.Goos)
+	// package managers
+	p.PackageManagers()
 
-	vim(p.Goos, p.HomeDir)
+	// vim and its dependencies
+	p.MustInstallPackage("vim")
 	p.SymlinkFilesInDirectory("dotvim")
-	vimPlugDependencies(p.HomeDir)
+	depsvim.PlugDependencies(p)
 
-	zsh(p.HomeDir)
+	// zsh and its dependencies
+	p.MustInstallPackage("zsh")
 	p.SymlinkFilesInDirectory("dotzsh")
 
 	return nil

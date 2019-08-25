@@ -9,11 +9,12 @@ import (
 
 // Profile of our operating system, home directory and current user
 type Profile struct {
-	Goos     string
-	Username string
-	HomeDir  string
-	Verbose  bool
-	Full     bool // full installation
+	Goos        string
+	Username    string
+	HomeDir     string
+	DotfilesDir string
+	Verbose     bool
+	Full        bool // full installation
 }
 
 // Init initialises a new operating system profile
@@ -34,10 +35,11 @@ func Init(verbose bool, full bool) *Profile {
 		fmt.Printf("Current OS user's home directory is: %s\n", homedir)
 	}
 	return &Profile{
-		Goos:     goos,
-		Username: username,
-		HomeDir:  homedir,
-		Verbose:  verbose,
-		Full:     full,
+		Goos:        goos,
+		Username:    username,
+		HomeDir:     homedir,
+		DotfilesDir: ".dotfiles",
+		Verbose:     verbose,
+		Full:        full,
 	}
 }

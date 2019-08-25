@@ -13,7 +13,7 @@ func (p *Profile) SymlinkFilesInDirectory(targetDir string) {
 
 	var files []string
 
-	dotvimDir := path.Join(p.HomeDir, dotfilesDir, targetDir)
+	dotvimDir := path.Join(p.HomeDir, p.DotfilesDir, targetDir)
 	err := filepath.Walk(dotvimDir, func(path string, info os.FileInfo, err error) error {
 		// exclude the directory itself
 		if filepath.Base(path) != targetDir {

@@ -1,13 +1,15 @@
-package commands
+package fileops
 
 import (
 	"fmt"
 	"log"
 	"os/exec"
+	"path"
 )
 
-func aptUpgrade() error {
-	cmd := exec.Command("bash", "scripts/apt_upgrade.sh")
+func (p *Profile) aptUpgrade() error {
+	pathString := path.Join(p.HomeDir, p.DotfilesDir, "scripts", "apt_upgrade.sh")
+	cmd := exec.Command("bash", pathString)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		log.Fatalf("cmd.Run() failed with %s\n", err)
