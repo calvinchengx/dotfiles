@@ -9,15 +9,22 @@ import (
 	"github.com/calvinchengx/dotfiles/static"
 )
 
+// Directory is the data structure to specify the behaviour for our directory and its files
+type Directory struct {
+	Name     string
+	ModeDir  os.FileMode
+	ModeFile os.FileMode
+}
+
 // DataDirectory allows to specify subdirectories that should exist in .dotfiles folder
-func (p *Profile) DataDirectory(subdirs []string) error {
-	for _, subdir := range subdirs {
-		path := path.Join(p.HomeDir, p.DotfilesDir, subdir)
-		var fileMode os.FileMode = 0755
-		err := os.MkdirAll(path, fileMode)
+func (p *Profile) DataDirectory() error {
+	for _, dir := range p.Dirs {
+		path := path.Join(p.HomeDir, p.DotfilesDir, dir.Name)
+		err := os.MkdirAll(path, dir.ModeDir)
 		if err != nil {
 			return err
 		}
+		p.BoxFiles(dir.Name, dir.ModeFile)
 	}
 	return nil
 }

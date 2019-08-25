@@ -35,10 +35,7 @@ func Setup(c *cli.Context) error {
 	p := fileops.Init(verbose, full)
 
 	// data directory
-	p.DataDirectory([]string{"scripts", "dotvim", "dotzsh"})
-	p.BoxFiles("scripts", 0755)
-	p.BoxFiles("dotvim", 0644)
-	p.BoxFiles("dotzsh", 0644)
+	p.DataDirectory()
 
 	// package managers
 	p.PackageManagers()
