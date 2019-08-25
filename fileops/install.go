@@ -1,4 +1,4 @@
-package commands
+package fileops
 
 import (
 	"fmt"
@@ -6,7 +6,8 @@ import (
 	"os/exec"
 )
 
-func installPackage(pkg, goos string) error {
+// InstallPackage allows us install a package in an os-agnostic fashion
+func InstallPackage(pkg, goos string) error {
 	fmt.Printf("Install %s\n", pkg)
 	var cmd *exec.Cmd
 	switch goos {

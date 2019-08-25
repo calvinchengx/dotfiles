@@ -5,21 +5,23 @@ import (
 	"log"
 	"os/exec"
 	"path"
+
+	"github.com/calvinchengx/dotfiles/fileops"
 )
 
 func vim(goos string, homedir string) {
 	switch goos {
 	case "darwin":
-		exist, path := checkExistsWithPath("vim")
+		exist, path := fileops.CheckExistsAgainstPath("vim")
 		install := exist == false || exist == true && path != "/usr/local/bin/vim"
 		if install {
-			installPackage("vim", goos)
+			fileops.InstallPackage("vim", goos)
 		}
 	case "linux":
 	default:
-		install := checkExists("vim") == false
+		install := fileops.CheckExists("vim") == false
 		if install {
-			installPackage("vim", goos)
+			fileops.InstallPackage("vim", goos)
 		}
 	}
 }

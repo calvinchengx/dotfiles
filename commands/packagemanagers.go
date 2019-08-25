@@ -1,9 +1,11 @@
 package commands
 
+import "github.com/calvinchengx/dotfiles/fileops"
+
 func packageManagers(goos string) {
 	switch goos {
 	case "darwin":
-		if checkExists("brew") {
+		if fileops.CheckExists("brew") {
 			homeBrewUpgrade()
 		} else {
 			homeBrewInstall()

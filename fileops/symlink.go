@@ -1,4 +1,4 @@
-package commands
+package fileops
 
 import (
 	"fmt"
@@ -7,7 +7,8 @@ import (
 	"path/filepath"
 )
 
-func symlinkFilesInDirectory(homedir string, targetDir string, verbose bool) {
+// SymlinkFilesInDirectory allows us to symlink all files found in a targetDirectory in .dotfiles folder
+func SymlinkFilesInDirectory(homedir string, targetDir string, verbose bool) {
 	fmt.Printf("Symlink files in %s\n", targetDir)
 
 	var files []string

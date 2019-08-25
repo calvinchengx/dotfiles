@@ -6,7 +6,11 @@ import (
 	"runtime"
 
 	"github.com/urfave/cli"
+
+	"github.com/calvinchengx/dotfiles/fileops"
 )
+
+const dotfilesDir = ".dotfiles"
 
 var (
 	full    bool
@@ -41,20 +45,21 @@ func Setup(c *cli.Context) error {
 	fmt.Println("Current OS user is:", username)
 	fmt.Println("Current OS user's home directory is:", homedir)
 
-	dataDirectory(homedir, []string{"dotvim", "scripts", "dotzsh"})
+	fileops.DataDirectory(homedir, []string{"scripts", "dotvim", "dotzsh"})
 
-	boxFiles(homedir, "dotvim", 0644)
-	boxFiles(homedir, "scripts", 0755)
-	boxFiles(homedir, "dotzsh", 0644)
+	fileops.BoxFiles(homedir, "scripts", 0755)
+
+	fileops.BoxFiles(homedir, "dotvim", 0644)
+	fileops.BoxFiles(homedir, "dotzsh", 0644)
 
 	packageManagers(goos)
 
 	vim(goos, homedir)
-	symlinkFilesInDirectory(homedir, "dotvim", verbose)
+	fileops.SymlinkFilesInDirectory(homedir, "dotvim", verbose)
 	vimPlugDependencies(homedir)
 
 	zsh(goos)
-	symlinkFilesInDirectory(homedir, "dotzsh", verbose)
+	fileops.SymlinkFilesInDirectory(homedir, "dotzsh", verbose)
 
 	return nil
 }

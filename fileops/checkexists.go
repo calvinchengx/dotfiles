@@ -1,11 +1,12 @@
-package commands
+package fileops
 
 import (
 	"fmt"
 	"os/exec"
 )
 
-func checkExists(programName string) bool {
+// CheckExists accepts a programName as string and returns whether the programName is already installed or not
+func CheckExists(programName string) bool {
 	path, err := exec.LookPath(programName)
 	if err != nil {
 		fmt.Printf("%s does not exist\n", programName)
@@ -15,7 +16,9 @@ func checkExists(programName string) bool {
 	return true
 }
 
-func checkExistsWithPath(programName string) (bool, string) {
+// CheckExistsAgainstPath accepts a programName as string and returns whether prograName is installed or not and
+// the path where it is installed
+func CheckExistsAgainstPath(programName string) (bool, string) {
 	path, err := exec.LookPath(programName)
 	if err != nil {
 		fmt.Printf("%s does not exist\n", programName)

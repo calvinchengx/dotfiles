@@ -1,35 +1,22 @@
 package commands
 
 import (
-	"fmt"
-	"log"
-	"os/exec"
+	"github.com/calvinchengx/dotfiles/fileops"
 )
 
 func zsh(goos string) {
 	switch goos {
 	case "darwin":
-		exist, path := checkExistsWithPath("zsh")
+		exist, path := fileops.CheckExistsAgainstPath("zsh")
 		install := exist == false || exist == true && path != "/usr/local/bin/zsh"
 		if install {
-			installPackage("zsh", goos)
+			fileops.InstallPackage("zsh", goos)
 		}
 	case "linux":
 	default:
-		install := checkExists("zsh") == false
+		install := fileops.CheckExists("zsh") == false
 		if install {
-			installPackage("zsh", goos)
+			fileops.InstallPackage("zsh", goos)
 		}
 	}
-}
-
-func zshInstallWith(packageManagerName string) error {
-	fmt.Printf("Install vim\n")
-	cmd := exec.Command(packageManagerName, "install", "zsh")
-	out, err := cmd.CombinedOutput()
-	if err != nil {
-		log.Fatalf("cmd.Run() failed with %s\n", err)
-	}
-	fmt.Printf("combined out:\n%s\n", string(out))
-	return nil
 }
