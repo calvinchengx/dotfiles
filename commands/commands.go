@@ -30,21 +30,21 @@ var Flags = []cli.Flag{
 // Setup is the function that executes the installation of dotfiles in our current OS
 func Setup(c *cli.Context) error {
 
-	p := Init(verbose)
+	p := fileops.Init(verbose, full)
 
-	fileops.DataDirectory(p.HomeDir, []string{"scripts", "dotvim", "dotzsh"})
-	fileops.BoxFiles(p.HomeDir, "scripts", 0755)
-	fileops.BoxFiles(p.HomeDir, "dotvim", 0644)
-	fileops.BoxFiles(p.HomeDir, "dotzsh", 0644)
+	p.DataDirectory([]string{"scripts", "dotvim", "dotzsh"})
+	p.BoxFiles("scripts", 0755)
+	p.BoxFiles("dotvim", 0644)
+	p.BoxFiles("dotzsh", 0644)
 
 	packageManagers(p.Goos)
 
 	vim(p.Goos, p.HomeDir)
-	fileops.SymlinkFilesInDirectory(p.HomeDir, "dotvim", verbose)
+	p.SymlinkFilesInDirectory("dotvim")
 	vimPlugDependencies(p.HomeDir)
 
 	zsh(p.HomeDir)
-	fileops.SymlinkFilesInDirectory(p.HomeDir, "dotzsh", verbose)
+	p.SymlinkFilesInDirectory("dotzsh")
 
 	return nil
 }

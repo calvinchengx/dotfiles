@@ -8,12 +8,12 @@ import (
 )
 
 // SymlinkFilesInDirectory allows us to symlink all files found in a targetDirectory in .dotfiles folder
-func SymlinkFilesInDirectory(homedir string, targetDir string, verbose bool) {
+func (p *Profile) SymlinkFilesInDirectory(targetDir string) {
 	fmt.Printf("Symlink files in %s\n", targetDir)
 
 	var files []string
 
-	dotvimDir := path.Join(homedir, dotfilesDir, targetDir)
+	dotvimDir := path.Join(p.HomeDir, dotfilesDir, targetDir)
 	err := filepath.Walk(dotvimDir, func(path string, info os.FileInfo, err error) error {
 		// exclude the directory itself
 		if filepath.Base(path) != targetDir {
@@ -27,8 +27,8 @@ func SymlinkFilesInDirectory(homedir string, targetDir string, verbose bool) {
 	}
 
 	for _, source := range files {
-		target := path.Join(homedir, filepath.Base(source))
-		if verbose {
+		target := path.Join(p.HomeDir, filepath.Base(source))
+		if p.Verbose {
 			fmt.Printf("%s -> %s\n", target, source)
 		}
 		if _, err := os.Lstat(target); err == nil {

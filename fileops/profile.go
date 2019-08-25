@@ -1,4 +1,4 @@
-package commands
+package fileops
 
 import (
 	"fmt"
@@ -12,10 +12,12 @@ type Profile struct {
 	Goos     string
 	Username string
 	HomeDir  string
+	Verbose  bool
+	Full     bool // full installation
 }
 
 // Init initialises a new operating system profile
-func Init(verbose bool) *Profile {
+func Init(verbose bool, full bool) *Profile {
 	goos := runtime.GOOS
 	if verbose {
 		fmt.Printf("Current operating system: %s\n", goos)
@@ -35,5 +37,7 @@ func Init(verbose bool) *Profile {
 		Goos:     goos,
 		Username: username,
 		HomeDir:  homedir,
+		Verbose:  verbose,
+		Full:     full,
 	}
 }
