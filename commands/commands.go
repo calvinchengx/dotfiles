@@ -46,9 +46,7 @@ func Setup(c *cli.Context) error {
 	fmt.Println("Current OS user's home directory is:", homedir)
 
 	fileops.DataDirectory(homedir, []string{"scripts", "dotvim", "dotzsh"})
-
 	fileops.BoxFiles(homedir, "scripts", 0755)
-
 	fileops.BoxFiles(homedir, "dotvim", 0644)
 	fileops.BoxFiles(homedir, "dotzsh", 0644)
 
