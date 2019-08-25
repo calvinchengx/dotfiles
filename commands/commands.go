@@ -1,10 +1,6 @@
 package commands
 
 import (
-	"fmt"
-	"os/user"
-	"runtime"
-
 	"github.com/urfave/cli"
 
 	"github.com/calvinchengx/dotfiles/fileops"
@@ -33,31 +29,22 @@ var Flags = []cli.Flag{
 
 // Setup is the function that executes the installation of dotfiles in our current OS
 func Setup(c *cli.Context) error {
-	goos := runtime.GOOS
-	fmt.Println("Current operating system:", goos)
-	fmt.Println("Full installation:", full)
-	osUser, err := user.Current()
-	if err != nil {
-		return err
-	}
-	username := osUser.Username
-	homedir := osUser.HomeDir
-	fmt.Println("Current OS user is:", username)
-	fmt.Println("Current OS user's home directory is:", homedir)
 
-	fileops.DataDirectory(homedir, []string{"scripts", "dotvim", "dotzsh"})
-	fileops.BoxFiles(homedir, "scripts", 0755)
-	fileops.BoxFiles(homedir, "dotvim", 0644)
-	fileops.BoxFiles(homedir, "dotzsh", 0644)
+	p := Init(verbose)
 
-	packageManagers(goos)
+	fileops.DataDirectory(p.HomeDir, []string{"scripts", "dotvim", "dotzsh"})
+	fileops.BoxFiles(p.HomeDir, "scripts", 0755)
+	fileops.BoxFiles(p.HomeDir, "dotvim", 0644)
+	fileops.BoxFiles(p.HomeDir, "dotzsh", 0644)
 
-	vim(goos, homedir)
-	fileops.SymlinkFilesInDirectory(homedir, "dotvim", verbose)
-	vimPlugDependencies(homedir)
+	packageManagers(p.Goos)
 
-	zsh(goos)
-	fileops.SymlinkFilesInDirectory(homedir, "dotzsh", verbose)
+	vim(p.Goos, p.HomeDir)
+	fileops.SymlinkFilesInDirectory(p.HomeDir, "dotvim", verbose)
+	vimPlugDependencies(p.HomeDir)
+
+	zsh(p.HomeDir)
+	fileops.SymlinkFilesInDirectory(p.HomeDir, "dotzsh", verbose)
 
 	return nil
 }
