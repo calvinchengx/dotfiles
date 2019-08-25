@@ -91,7 +91,7 @@ type ExitError interface {
 // Implements Interface in terms of really exec()ing.
 type executor struct{}
 
-// New returns a new Interface which will os/exec to run commands.
+// New returns a new Interface which will use os/exec to run commands.
 func New() Interface {
 	return &executor{}
 }
