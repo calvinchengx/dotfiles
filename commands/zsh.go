@@ -2,40 +2,34 @@ package commands
 
 import (
 	"fmt"
-	"os"
-	"path"
-	"path/filepath"
+	"log"
+	"os/exec"
 )
 
-func zsh(homedir string) {
-	fmt.Printf("Symlink zsh files\n")
-	var files []string
-
-	dotvimDirname := "dotzsh"
-	dotvimDir := path.Join(homedir, dotfilesDir, dotvimDirname)
-	err := filepath.Walk(dotvimDir, func(path string, info os.FileInfo, err error) error {
-		// exclude the directory itself
-		if filepath.Base(path) != dotvimDirname {
-			files = append(files, path)
+func zsh(goos string) {
+	switch goos {
+	case "darwin":
+		exist, path := checkExistsWithPath("zsh")
+		install := exist == false || exist == true && path != "/usr/local/bin/zsh"
+		if install {
+			installPackage("zsh", goos)
 		}
-		return nil
-	})
+	case "linux":
+	default:
+		install := checkExists("zsh") == false
+		if install {
+			installPackage("zsh", goos)
+		}
+	}
+}
 
+func zshInstallWith(packageManagerName string) error {
+	fmt.Printf("Install vim\n")
+	cmd := exec.Command(packageManagerName, "install", "zsh")
+	out, err := cmd.CombinedOutput()
 	if err != nil {
-		panic(err)
+		log.Fatalf("cmd.Run() failed with %s\n", err)
 	}
-
-	for _, source := range files {
-		target := path.Join(homedir, filepath.Base(source))
-		fmt.Printf("%s symlinked to %s\n", target, source)
-		if _, err := os.Lstat(target); err == nil {
-			if err := os.Remove(target); err != nil {
-				fmt.Printf("failed to unlink: %+v", err)
-			}
-		} else if os.IsNotExist(err) {
-			fmt.Printf("failed to check symlink: %+v", err)
-		}
-		// execute symlink
-		os.Symlink(source, target)
-	}
+	fmt.Printf("combined out:\n%s\n", string(out))
+	return nil
 }

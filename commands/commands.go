@@ -8,7 +8,10 @@ import (
 	"github.com/urfave/cli"
 )
 
-var full bool
+var (
+	full    bool
+	verbose bool
+)
 
 // Flags define available flags for our command line tool
 var Flags = []cli.Flag{
@@ -16,6 +19,11 @@ var Flags = []cli.Flag{
 		Name:        "full, f",
 		Usage:       "Specify whether to execute a full installation or not, defaults to true",
 		Destination: &full,
+	},
+	cli.BoolFlag{
+		Name:        "verbose, vv",
+		Usage:       "Specify whether to execute with verbosity, defaults to false",
+		Destination: &verbose,
 	},
 }
 
@@ -42,9 +50,11 @@ func Setup(c *cli.Context) error {
 	packageManagers(goos)
 
 	vim(goos, homedir)
+	symlinkFilesInDirectory(homedir, "dotvim", verbose)
 	vimPlugDependencies(homedir)
 
-	zsh(homedir)
+	zsh(goos)
+	symlinkFilesInDirectory(homedir, "dotzsh", verbose)
 
 	return nil
 }
